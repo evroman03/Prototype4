@@ -4,6 +4,7 @@ public class RepeatingBackground : MonoBehaviour
 {
     private Rigidbody rb;
     private GameObject moveTowards;
+    public Transform spawnTo;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,11 +22,5 @@ public class RepeatingBackground : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.CompareTag("Spawn"))
-        {
-            GameController.Instance.SpawnBackground(false);
-        }
-    }
+    
 }

@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53cde90bdfdcad745bec9e07fcbc96a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackgroundSpeed: 1
+  MaxSpeed: 50
+  MinSpeed: 30
+  BackgroundSpeed: 30
   MoveTowards: {fileID: 0}
   SpawnPoint: {fileID: 0}
   Backgrounds:
-  - {fileID: 5531633465636134618, guid: 340c86413a240e94c921408df94f5bc5, type: 3}
+  - {fileID: 6099378877471647438, guid: 340c86413a240e94c921408df94f5bc5, type: 3}
