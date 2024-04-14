@@ -28,9 +28,18 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             ""id"": ""3e046b13-2656-4ac9-b3ba-bddc368e7e4b"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Left"",
                     ""type"": ""Button"",
                     ""id"": ""edd011ac-5373-4f5b-ae35-0bf0aba7143d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""80d2dbf1-14e8-42cf-a8f3-3330f2883505"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -41,11 +50,22 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""58d649b9-3dec-4ba1-9373-2310546458e8"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9066826d-db78-4b0d-8313-894c09edf056"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -56,7 +76,8 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
 }");
         // PlayerMap
         m_PlayerMap = asset.FindActionMap("PlayerMap", throwIfNotFound: true);
-        m_PlayerMap_Newaction = m_PlayerMap.FindAction("New action", throwIfNotFound: true);
+        m_PlayerMap_Left = m_PlayerMap.FindAction("Left", throwIfNotFound: true);
+        m_PlayerMap_Right = m_PlayerMap.FindAction("Right", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -118,12 +139,14 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     // PlayerMap
     private readonly InputActionMap m_PlayerMap;
     private List<IPlayerMapActions> m_PlayerMapActionsCallbackInterfaces = new List<IPlayerMapActions>();
-    private readonly InputAction m_PlayerMap_Newaction;
+    private readonly InputAction m_PlayerMap_Left;
+    private readonly InputAction m_PlayerMap_Right;
     public struct PlayerMapActions
     {
         private @InputMap m_Wrapper;
         public PlayerMapActions(@InputMap wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_PlayerMap_Newaction;
+        public InputAction @Left => m_Wrapper.m_PlayerMap_Left;
+        public InputAction @Right => m_Wrapper.m_PlayerMap_Right;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -133,16 +156,22 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerMapActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerMapActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Left.started += instance.OnLeft;
+            @Left.performed += instance.OnLeft;
+            @Left.canceled += instance.OnLeft;
+            @Right.started += instance.OnRight;
+            @Right.performed += instance.OnRight;
+            @Right.canceled += instance.OnRight;
         }
 
         private void UnregisterCallbacks(IPlayerMapActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Left.started -= instance.OnLeft;
+            @Left.performed -= instance.OnLeft;
+            @Left.canceled -= instance.OnLeft;
+            @Right.started -= instance.OnRight;
+            @Right.performed -= instance.OnRight;
+            @Right.canceled -= instance.OnRight;
         }
 
         public void RemoveCallbacks(IPlayerMapActions instance)
@@ -162,6 +191,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     public PlayerMapActions @PlayerMap => new PlayerMapActions(this);
     public interface IPlayerMapActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnLeft(InputAction.CallbackContext context);
+        void OnRight(InputAction.CallbackContext context);
     }
 }

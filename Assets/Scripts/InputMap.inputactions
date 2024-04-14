@@ -6,9 +6,18 @@
             "id": "3e046b13-2656-4ac9-b3ba-bddc368e7e4b",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Left",
                     "type": "Button",
                     "id": "edd011ac-5373-4f5b-ae35-0bf0aba7143d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "80d2dbf1-14e8-42cf-a8f3-3330f2883505",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -19,11 +28,22 @@
                 {
                     "name": "",
                     "id": "58d649b9-3dec-4ba1-9373-2310546458e8",
-                    "path": "",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9066826d-db78-4b0d-8313-894c09edf056",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

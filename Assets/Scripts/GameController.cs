@@ -22,15 +22,39 @@ public class GameController : MonoBehaviour
 
     public float MaxSpeed=50, MinSpeed=30f;
     public float BackgroundSpeed;
-    public GameObject MoveTowards;
-    public GameObject SpawnPoint;
+
+    public GameObject Player, Enemy;
     public RepeatingBackground[] Backgrounds;
+
+
+    public GameObject[] Snaps;
+    public GameObject[] EnemySnaps;
+    public GameObject MoveTowards, BackgroundSpawn;
+
+
+    [HideInInspector] public int PlayerCenterSnap, EnemyCenterSnap;
     private RepeatingBackground temp;
+
+
 
     public void Start()
     {
         Application.targetFrameRate = 60;
         SpawnBackground(true);
+        PlayerCenterSnap = Snaps.Length / 2;
+        EnemyCenterSnap = EnemySnaps.Length/2;
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            Player = Instantiate(Player);
+        }
+        if (GameObject.FindGameObjectWithTag("Enemy") == null)
+        {
+            Enemy = Instantiate(Enemy);
+            Enemy.GetComponentInChildren<EnemyCarController>().GameReady();
+        }
+        Player.transform.position = Snaps[PlayerCenterSnap].transform.position;
+        Enemy.transform.position = EnemySnaps[EnemyCenterSnap].transform.position;
+        PlayerController.Instance.GameReady();
     }
     public void Update()
     {
@@ -40,8 +64,23 @@ public class GameController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            print("HERE");
             ChangeBackgroundSpeed(-5);
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Enemy.GetComponentInChildren<EnemyCarController>().MoveLeft();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            Enemy.GetComponentInChildren<EnemyCarController>().MoveRight();
+        }
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(-10f);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(10f);
         }
     }
     public void ChangeBackgroundSpeed(int speed)
@@ -52,7 +91,7 @@ public class GameController : MonoBehaviour
     {
         if (start)
         {
-            var obj2 = Instantiate(Backgrounds[0].gameObject, SpawnPoint.transform.position, Quaternion.identity);
+            var obj2 = Instantiate(Backgrounds[0].gameObject, BackgroundSpawn.transform.position, Quaternion.identity);
             temp = obj2.GetComponent<RepeatingBackground>() ;
         }
         else if (!start)
