@@ -23,35 +23,35 @@ public class EnemyCarController : MonoBehaviour
         gC = GameController.Instance;
         currentSnap = gC.EnemyCenterSnap;
         enemy = gC.Enemy;
-        currentState = EnemyState.MovingLeft;
-        currentCoroutine = StartCoroutine(MovingLeft());
 
+        //currentState = EnemyState.MovingLeft;
+        //currentCoroutine = StartCoroutine(MovingLeft());
     }
     public void GSM(EnemyState state)
     {
+        if(currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+            currentCoroutine = null;
+        }
         switch(state)
         {
             case EnemyState.None:
-                StopCoroutine(currentCoroutine);
                 currentState = EnemyState.None;
                 break;
-            case EnemyState.MovingLeft:
-                StopCoroutine(currentCoroutine);    
+            case EnemyState.MovingLeft:  
                 currentState = EnemyState.MovingLeft;
                 currentCoroutine = StartCoroutine(MovingLeft());
                 break;
             case EnemyState.MovingRight:
-                StopCoroutine(currentCoroutine);
                 currentState = EnemyState.MovingRight;
                 currentCoroutine = StartCoroutine(MovingRight());
                 break;
             case EnemyState.MovingForward:
-                StopCoroutine(currentCoroutine);
                 currentState = EnemyState.MovingForward;
                 currentCoroutine = StartCoroutine(MovingForward());
                 break;
             case EnemyState.MovingBackward:
-                StopCoroutine(currentCoroutine);
                 currentState = EnemyState.MovingBackward;
                 currentCoroutine = StartCoroutine(MovingBackward());
                 break;
@@ -143,12 +143,24 @@ public class EnemyCarController : MonoBehaviour
             enemy.transform.position = new Vector3(gC.EnemySnaps[currentSnap].transform.position.x, gC.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
         }
     }
-    public void ChangeDistance(float distance)
+    public IEnumerator ChangeDistanceOverTime(float distance)
     {
-        if(distance != 0)
-        {
+        float duration = 1f;
+        float elapsedTime = 0.0f;
+        Vector3 initialPosition = enemy.transform.position;
+        Vector3 targetPosition = new Vector3(initialPosition.x, initialPosition.y, initialPosition.z - distance);
 
+        while (elapsedTime < duration)
+        {
+            float t = elapsedTime / duration;
+            enemy.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
+            elapsedTime += Time.deltaTime;
+            print(t);
+            yield return null; // Wait for the next frame
         }
+
+        // Ensure we reach the exact target position
+        enemy.transform.position = targetPosition;
     }
     public void SpawnBarrel(GameObject barrel)
     {
