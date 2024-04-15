@@ -159,6 +159,9 @@ MonoBehaviour:
   Enemy: {fileID: 7672619340922217995, guid: aa3fe3fe2c7775f49b6f8bc74f81de66, type: 3}
   Backgrounds:
   - {fileID: 6099378877471647438, guid: 340c86413a240e94c921408df94f5bc5, type: 3}
+  - {fileID: 7480218411753436622, guid: 23bd9023fe2874e46b0fbd4884e81182, type: 3}
+  - {fileID: 6249210931196258136, guid: c66bbe13df9d6a5418a396d24854f63d, type: 3}
+  - {fileID: 801915172511533693, guid: 45d9e99821976bc469fc6016172a7216, type: 3}
   Snaps:
   - {fileID: 0}
   - {fileID: 0}

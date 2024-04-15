@@ -17,7 +17,7 @@ public class Object : MonoBehaviour
             } 
             if(EnemyCarDistanceChange != 0 )
             {
-                GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyCarController>().ChangeDistance(EnemyCarDistanceChange);
+                GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyCarController>().ChangeDistanceOverTime(EnemyCarDistanceChange);
             }
         }
     }
