@@ -688,6 +688,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1410217817}
     - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
+      propertyPath: Backgrounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
       propertyPath: EnemySnaps.Array.data[0]
       value: 
       objectReference: {fileID: 1836297143}
@@ -699,6 +703,30 @@ PrefabInstance:
       propertyPath: EnemySnaps.Array.data[2]
       value: 
       objectReference: {fileID: 65200004}
+    - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
+      propertyPath: Backgrounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 7480218411753436622, guid: 23bd9023fe2874e46b0fbd4884e81182, type: 3}
+    - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
+      propertyPath: Backgrounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 6249210931196258136, guid: c66bbe13df9d6a5418a396d24854f63d, type: 3}
+    - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
+      propertyPath: Backgrounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 801915172511533693, guid: 45d9e99821976bc469fc6016172a7216, type: 3}
+    - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
+      propertyPath: Backgrounds.Array.data[4]
+      value: 
+      objectReference: {fileID: 801915172511533693, guid: 45d9e99821976bc469fc6016172a7216, type: 3}
+    - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
+      propertyPath: Backgrounds.Array.data[5]
+      value: 
+      objectReference: {fileID: 6099378877471647438, guid: 340c86413a240e94c921408df94f5bc5, type: 3}
+    - target: {fileID: 7272292753873501555, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
+      propertyPath: Backgrounds.Array.data[6]
+      value: 
+      objectReference: {fileID: 6249210931196258136, guid: c66bbe13df9d6a5418a396d24854f63d, type: 3}
     - target: {fileID: 9024279105427710237, guid: 938fc02fef4b94c43beda941ba4d6d7e, type: 3}
       propertyPath: m_Name
       value: GameManager

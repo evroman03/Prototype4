@@ -76,11 +76,13 @@ public class GameController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.O))
         {
-            Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(-10f);
+            //Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(-10f);
+            Enemy.GetComponentInChildren<EnemyCarController>().StartCoroutine(Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistanceOverTime(-10f));
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(10f);
+            //Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(10f);
+            Enemy.GetComponentInChildren<EnemyCarController>().StartCoroutine(Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistanceOverTime(10f));
         }
         if(Input.GetKeyDown(KeyCode.Escape))
         {
