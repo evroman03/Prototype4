@@ -3,6 +3,22 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+    #region Singleton
+    private static ScoreManager instance;
+    public static ScoreManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindAnyObjectByType(typeof(ScoreManager)) as ScoreManager;
+            return instance;
+        }
+        set
+        {
+            instance = value;
+        }
+    }
+    #endregion
     public TMP_Text scoreText; // Reference to the TextMeshPro Text component where the score will be displayed
     public TMP_Text multiplierText; //Reference to the TextMeshPro Text component where the multiplier will be displayed
     private int score = 0; // The current score

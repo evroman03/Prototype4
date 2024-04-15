@@ -82,6 +82,10 @@ public class GameController : MonoBehaviour
         {
             Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(10f);
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
     public void ChangeBackgroundSpeed(int speed)
     {
