@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
     #endregion
     public TMP_Text scoreText; // Reference to the TextMeshPro Text component where the score will be displayed
     public TMP_Text multiplierText; //Reference to the TextMeshPro Text component where the multiplier will be displayed
-    private int score = 0; // The current score
+    [SerializeField] int score = 0; // The current score
     [SerializeField] int multiplier = 1; // The current multiplier
     [SerializeField] float timeSinceHit;
     [SerializeField] int levelsToRemove = 1;
@@ -55,6 +55,7 @@ public class ScoreManager : MonoBehaviour
     {
         score += points * multiplier;
         UpdateScoreText();
+        SaveScore();
     }
 
     public void DecreaseMultiplier()
@@ -84,4 +85,11 @@ public class ScoreManager : MonoBehaviour
             multiplierText.text = "x" + multiplier.ToString();
         }
     }
+
+    private void SaveScore()
+    {
+        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.Save();
+    }
+
 }
