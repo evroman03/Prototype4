@@ -429,6 +429,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458df9db97afa0a43bf9908c3728e057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &862757739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2756822637509166420, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+  m_PrefabInstance: {fileID: 1921004206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &993640291
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +453,7 @@ GameObject:
   - component: {fileID: 993640294}
   - component: {fileID: 993640293}
   - component: {fileID: 993640297}
+  - component: {fileID: 993640298}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -564,6 +576,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &993640298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993640291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4154ff41c8395484bba806d03749af7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1254199325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1080,6 +1104,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: multiplierText
+      value: 
+      objectReference: {fileID: 862757739}
     - target: {fileID: 8764763284894815403, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
       propertyPath: m_Name
       value: ScoreManager

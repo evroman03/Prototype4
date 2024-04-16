@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectible : MonoBehaviour
+public class Multiplier : MonoBehaviour
 {
     private ScoreManager scoreManager;
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         scoreManager = FindObjectOfType<ScoreManager>();
 
@@ -14,11 +15,13 @@ public class Collectible : MonoBehaviour
             Debug.LogError("ScoreManager component not found in the scene.");
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(other.CompareTag("Obstacle"))
         {
-            scoreManager.ChangeScore(50);
+            scoreManager.DecreaseMultiplier();
+            Debug.Log("Hit Obstacle");
         }
     }
 }
