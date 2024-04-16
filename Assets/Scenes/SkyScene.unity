@@ -1106,7 +1106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
       propertyPath: multiplierText

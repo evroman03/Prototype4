@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Timer : MonoBehaviour
 {
@@ -30,9 +32,10 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                timeRemaining = 0;
+                SceneManager.LoadScene(2);
             }
         }
+
     }
 
     void DisplayTime(float timeToDisplay)

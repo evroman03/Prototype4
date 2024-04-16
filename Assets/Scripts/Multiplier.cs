@@ -21,7 +21,6 @@ public class Multiplier : MonoBehaviour
         if(other.CompareTag("Obstacle"))
         {
             scoreManager.DecreaseMultiplier();
-            Debug.Log("Hit Obstacle");
         }
     }
 }
