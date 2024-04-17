@@ -435,6 +435,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1677612573797760032, guid: f4a5e08cdbf374f4a83ee840e2720d7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781902729382511362, guid: f4a5e08cdbf374f4a83ee840e2720d7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5864161658950764796, guid: f4a5e08cdbf374f4a83ee840e2720d7e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.33
+      objectReference: {fileID: 0}
     - target: {fileID: 6439317533534276136, guid: f4a5e08cdbf374f4a83ee840e2720d7e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

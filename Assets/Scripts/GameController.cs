@@ -46,11 +46,12 @@ public class GameController : MonoBehaviour
         }
         if (GameObject.FindGameObjectWithTag("Enemy") == null)
         {
-            Enemy = Instantiate(Enemy);
-            Enemy.GetComponentInChildren<EnemyCarController>().GameReady();
+            Enemy = Instantiate(Enemy);  
         }
-        PlayerController.Instance.GameReady();
         LaneManager.Instance.GameReady();
+        PlayerController.Instance.GameReady();
+        Enemy.GetComponentInChildren<EnemyCarController>().GameReady();
+
         Player.transform.position = LaneManager.Instance.PlayerSnaps[LaneManager.Instance.PlayerCenterSnap].transform.position;
         Enemy.transform.position = LaneManager.Instance.EnemySnaps[LaneManager.Instance.EnemyCenterSnap].transform.position;
 

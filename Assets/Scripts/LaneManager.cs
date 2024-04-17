@@ -47,7 +47,7 @@ public class LaneManager : MonoBehaviour
         OpenLanes = new GameObject[EnemySnaps.Length]; //Making sure the maximum number of open lanes is as big as however many lanes we have
         for(int i =0; i<EnemySnaps.Length; i++)
         {
-            if(!ObstacleAhead(EnemySnaps[i]))
+            if(!ObstacleAtPos(EnemySnaps[i]))
             {
                 OpenLanes[i] = EnemySnaps[i];
             }
@@ -58,7 +58,7 @@ public class LaneManager : MonoBehaviour
         }
         return OpenLanes;
     }
-    private bool ObstacleAhead(GameObject castFrom)
+    private bool ObstacleAtPos(GameObject castFrom)
     {
         RaycastHit hit;
         if (Physics.Raycast(castFrom.transform.position, transform.forward, out hit, enemyCar.detectionDistance))
@@ -69,5 +69,25 @@ public class LaneManager : MonoBehaviour
             }
         }
         return false;
+    }
+    public bool ObstacleAheadOfEnemy()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(EnemySnaps[enemyCar.currentSnap].transform.position, transform.forward, out hit, enemyCar.detectionDistance))
+        {
+            if (hit.collider.CompareTag("Obstacle"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool CanMoveLeft()
+    {
+        return (enemyCar.currentSnap != 0);
+    }
+    public bool CanMoveRight()
+    {
+        return (enemyCar.currentSnap != EnemySnaps.Length - 1);
     }
 }

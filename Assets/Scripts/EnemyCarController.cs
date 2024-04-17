@@ -26,6 +26,7 @@ public class EnemyCarController : MonoBehaviour
         currentSnap = LM.EnemyCenterSnap;
         enemy = GameController.Instance.Enemy;
         StartCoroutine(AvoidObstacle());
+        StartCoroutine(SpawnStuff());
         //currentState = EnemyState.MovingLeft;
         //currentCoroutine = StartCoroutine(MovingLeft());
     }
@@ -115,82 +116,49 @@ public class EnemyCarController : MonoBehaviour
         }
     }
 
+    private IEnumerator SpawnStuff()
+    {
+        while (true)
+        {
+            SpawnBarrel(ThingsToThrow[UnityEngine.Random.Range(0, ThingsToThrow.Length)]);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.25f, 3f));
+        }
+    }
     private IEnumerator AvoidObstacle()
     {
         while(true)
         {
-            if (ObstacleStraight())
+            if(LM.ObstacleAheadOfEnemy())
             {
-                if (ObstacleLeft(1))
+                int laneToGo =  UnityEngine.Random.Range(0, LM.OpenLanes.Length);
+                if (LM.OpenLanes[laneToGo] != null)
                 {
-                    MoveRight();
-                }
-                else if (ObstacleRight(1))
-                {
-                    MoveLeft();
+                    int moveCount=0;
+                    if (laneToGo < currentSnap)
+                    {
+                        moveCount = currentSnap - laneToGo;
+                        for (int i = 0; i < moveCount; i++)
+                        {
+                            MoveLeft();
+                        }
+                    }
+                    else if (laneToGo > currentSnap)
+                    {
+                        moveCount = laneToGo-currentSnap;
+                        for (int i = 0; i < moveCount; i++)
+                        {
+                            MoveRight();
+                        }
+                    }    
                 }
             }
             yield return new WaitForFixedUpdate();
         }    
     }
-    private bool ObstacleStraight()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(LM.EnemySnaps[currentSnap].transform.position, transform.forward, out hit, detectionDistance))
-        {
-            if (hit.collider.CompareTag("Obstacle"))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    private bool ObstacleLeft(int snapsToCheck)
-    {
-        if(currentSnap-snapsToCheck >= 0)
-        {
-            print("INSIDE");
-            RaycastHit hit;
-            if (Physics.Raycast(LM.EnemySnaps[(currentSnap - snapsToCheck)].transform.position, transform.forward, out hit, detectionDistance))
-            {
-                if (hit.collider.CompareTag("Obstacle"))
-                {
-                    print("FOUNDOBSTACLELEFT");
-                    return true;
-                }
-            }
-        } 
-        return false;
-    }
-    private bool ObstacleRight(int snapsToCheck) 
-    {
-        if(currentSnap+snapsToCheck <= LM.EnemySnaps.Length - 1)
-        {
-            print("INSIDE2");
-            RaycastHit hit;
-            if (Physics.Raycast(LM.EnemySnaps[(currentSnap + snapsToCheck)].transform.position, transform.forward, out hit, detectionDistance))
-            {
-                if (hit.collider.CompareTag("Obstacle"))
-                {
-                    print("FOUNDOBSTACLERIGHT");
-                    return true;
-                }
-            }
-        }  
-        return false;
-    }
 
-    public bool CanMoveLeft()
-    {
-        return (currentSnap != 0);
-    }
-    public bool CanMoveRight()
-    {
-        return (currentSnap != LM.EnemySnaps.Length - 1);
-    }
     public void MoveLeft()
     {
-        if (CanMoveLeft())
+        if (LM.CanMoveLeft())
         {
             currentSnap -= 1;
             enemy.transform.position = new Vector3(LM.EnemySnaps[currentSnap].transform.position.x, LM.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
@@ -198,7 +166,7 @@ public class EnemyCarController : MonoBehaviour
     }
     public void MoveRight()
     {
-        if (CanMoveRight())
+        if (LM.CanMoveRight())
         {
             currentSnap += 1;
             enemy.transform.position = new Vector3(LM.EnemySnaps[currentSnap].transform.position.x, LM.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);

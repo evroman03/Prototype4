@@ -79,11 +79,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSnap: 0
-  detectionDistance: 5
+  detectionDistance: 7
   barrelSpawn: {fileID: 5510755017684459041}
   ThingsToThrow:
-  - {fileID: 6477620682003757059, guid: b8327eddbdc52c64692c53bed16e7366, type: 3}
-  - {fileID: 5866480584318500601, guid: 523aa80fe85a96845958afa1c4e88ad1, type: 3}
+  - {fileID: 2491192500025300348, guid: ec7569d5617e66a42855a42aca24c85c, type: 3}
+  - {fileID: 8619130620706106687, guid: 43a66beeba59a004d9ec23b497576509, type: 3}
   currentState: 0
 --- !u!65 &8587077676080698416
 BoxCollider:
