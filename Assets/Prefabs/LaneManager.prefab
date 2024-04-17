@@ -65,7 +65,7 @@ GameObject:
   - component: {fileID: 6070557563882514653}
   m_Layer: 0
   m_Name: LaneEndL
-  m_TagString: Untagged
+  m_TagString: LaneEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   - {fileID: 211262837268110137}
   - {fileID: 6602387184569474979}
   - {fileID: 5557628982103854676}
+  OpenLanes: []
   PlayerCenterSnap: 0
   EnemyCenterSnap: 0
 --- !u!1 &884744235555161591
@@ -252,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 3425931507421319684}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 1, z: 20}
+  m_LocalPosition: {x: -4, y: 1.33, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -305,7 +306,7 @@ Transform:
   m_GameObject: {fileID: 3547096900328985632}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 20}
+  m_LocalPosition: {x: 0, y: 1.33, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -344,7 +345,7 @@ GameObject:
   - component: {fileID: 8895774683402344229}
   m_Layer: 0
   m_Name: LaneEndR
-  m_TagString: Untagged
+  m_TagString: LaneEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,7 +398,7 @@ GameObject:
   - component: {fileID: 8707394635295755831}
   m_Layer: 0
   m_Name: LaneEndC
-  m_TagString: Untagged
+  m_TagString: LaneEnd
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -464,7 +465,7 @@ Transform:
   m_GameObject: {fileID: 7529603447951734754}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 1, z: 20}
+  m_LocalPosition: {x: 4, y: 1.33, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
