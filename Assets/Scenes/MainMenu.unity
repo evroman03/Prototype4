@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -777,12 +777,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "You can move the car left with the left arrow key and right with the right
-    arrow key. The goal of the game is to get the highest score possible, in 3 minutes,
-    by picking up good barrels and avoiding hitting obstacles and bad barrels on
-    the road. The longer you go without hitting an obstacle the higher your score
-    multiplier(max 4) is but if you hit anything on your way it goes down to 1. \n                           
-    Drive safe and enjoy!!!"
+  m_text: "Move left and right using arrow keys.\n\nPick up coins.\n\nGrab good barrels
+    and avoid bad barrels.\n\n\n\n\n     Good Barrel           Bad Barrel        
+    Coin\n\n\n\n                            Drive safe and enjoy!!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -845,7 +842,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -544.18353, y: 0, z: -546.3691, w: -448.02274}
+  m_margin: {x: -544.18353, y: 0, z: -546.3691, w: -656.105}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -874,7 +871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &725587879
 RectTransform:
   m_ObjectHideFlags: 0
