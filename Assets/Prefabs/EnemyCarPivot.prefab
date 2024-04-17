@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 339619114800451281}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.010303434, y: 4.684528, z: 1.84}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41,7 +41,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339619114800451281}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a54d862f73880db4dac787638dd4fbde, type: 2}
   m_CullingMode: 0
@@ -72,15 +72,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6416710634715390957, guid: 734ffe6ecaed2cd47827e8b65c4e32d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.010303434
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416710634715390957, guid: 734ffe6ecaed2cd47827e8b65c4e32d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3445282
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416710634715390957, guid: 734ffe6ecaed2cd47827e8b65c4e32d6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.62
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6416710634715390957, guid: 734ffe6ecaed2cd47827e8b65c4e32d6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -114,7 +114,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyCar
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3118688671873901895, guid: 734ffe6ecaed2cd47827e8b65c4e32d6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -49,10 +49,11 @@ public class GameController : MonoBehaviour
             Enemy = Instantiate(Enemy);
             Enemy.GetComponentInChildren<EnemyCarController>().GameReady();
         }
-        Player.transform.position = LaneManager.Instance.PlayerSnaps[LaneManager.Instance.PlayerCenterSnap].transform.position;
-        Enemy.transform.position = LaneManager.Instance.EnemySnaps[LaneManager.Instance.EnemyCenterSnap].transform.position;
         PlayerController.Instance.GameReady();
         LaneManager.Instance.GameReady();
+        Player.transform.position = LaneManager.Instance.PlayerSnaps[LaneManager.Instance.PlayerCenterSnap].transform.position;
+        Enemy.transform.position = LaneManager.Instance.EnemySnaps[LaneManager.Instance.EnemyCenterSnap].transform.position;
+
     }
     public void Update()
     {
