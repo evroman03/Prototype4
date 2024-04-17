@@ -52,5 +52,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  LaneEnds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   PlayerCenterSnap: 0
   EnemyCenterSnap: 0

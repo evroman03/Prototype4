@@ -22,6 +22,7 @@ public class LaneManager : MonoBehaviour
     #endregion
     public GameObject[] PlayerSnaps;
     public GameObject[] EnemySnaps;
+    public GameObject[] LaneEnds;
     private EnemyCarController enemyCar;
     [HideInInspector] public int PlayerCenterSnap, EnemyCenterSnap;
 
