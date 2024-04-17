@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5405178457668477231}
   - component: {fileID: 7088885096018325948}
   - component: {fileID: 6949263144278527432}
+  - component: {fileID: -8212857929372110635}
+  - component: {fileID: 2303908984029893601}
   m_Layer: 0
   m_Name: Collectible
   m_TagString: Untagged
@@ -101,11 +103,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0000004, y: 2.0000005, z: 1.0000002}
+  m_Size: {x: 1.4, y: 59.06, z: 1.0000002}
   m_Center: {x: 0.00000005960466, y: 0, z: -0.00000008940697}
 --- !u!95 &7088885096018325948
 Animator:
@@ -142,3 +144,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScoreChangeFactor: 0
   EnemyCarDistanceChange: 0
+--- !u!114 &-8212857929372110635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866664587423738975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb9408b933a84d489418ac4cbee672e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &2303908984029893601
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866664587423738975}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
