@@ -54,6 +54,10 @@ public class ScoreManager : MonoBehaviour
     public void ChangeScore(int points)
     {
         score += points * multiplier;
+        if(score < 0)
+        {
+            score = 0;
+        }
         UpdateScoreText();
         SaveScore();
     }

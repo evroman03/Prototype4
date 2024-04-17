@@ -10,7 +10,7 @@ public class EnemyCarController : MonoBehaviour
     [HideInInspector] public int currentSnap;
     private LaneManager LM;
     private GameObject enemy;
-    [HideInInspector] public float detectionDistance;
+    public float detectionDistance;
     public Transform barrelSpawn;
     public GameObject[] ThingsToThrow;
     public enum EnemyState
@@ -25,7 +25,7 @@ public class EnemyCarController : MonoBehaviour
         LM = LaneManager.Instance;
         currentSnap = LM.EnemyCenterSnap;
         enemy = GameController.Instance.Enemy;
-        //StartCoroutine(AvoidObstacle());
+        StartCoroutine(AvoidObstacle());
         //currentState = EnemyState.MovingLeft;
         //currentCoroutine = StartCoroutine(MovingLeft());
     }
@@ -206,6 +206,7 @@ public class EnemyCarController : MonoBehaviour
     }
     public IEnumerator ChangeDistanceOverTime(float distance)
     {
+        print("HERE2");
         float duration = 1f;
         float elapsedTime = 0.0f;
         Vector3 initialPosition = enemy.transform.position;
@@ -222,6 +223,7 @@ public class EnemyCarController : MonoBehaviour
 
         // Ensure we reach the exact target position
         enemy.transform.position = targetPosition;
+        print("HERE3");
     }
     public void SpawnBarrel(GameObject barrel)
     {

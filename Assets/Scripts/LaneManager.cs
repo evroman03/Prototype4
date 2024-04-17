@@ -23,6 +23,7 @@ public class LaneManager : MonoBehaviour
     public GameObject[] PlayerSnaps;
     public GameObject[] EnemySnaps;
     public GameObject[] LaneEnds;
+    public GameObject[] OpenLanes;
     private EnemyCarController enemyCar;
     [HideInInspector] public int PlayerCenterSnap, EnemyCenterSnap;
 
@@ -37,26 +38,25 @@ public class LaneManager : MonoBehaviour
     {
         while (true)
         {
-            OpenLanes();
-            print(GameController.Instance.MinSpeed / GameController.Instance.BackgroundSpeed);
-            yield return new WaitForSeconds(GameController.Instance.MinSpeed / GameController.Instance.BackgroundSpeed);
+            FindOpenLanes();
+            yield return new WaitForFixedUpdate();
         }
     }
-    public GameObject[] OpenLanes()
+    public GameObject[] FindOpenLanes()
     {
-        var openLanes = new GameObject[EnemySnaps.Length]; //Making sure the maximum number of open lanes is as big as however many lanes we have
+        OpenLanes = new GameObject[EnemySnaps.Length]; //Making sure the maximum number of open lanes is as big as however many lanes we have
         for(int i =0; i<EnemySnaps.Length; i++)
         {
             if(!ObstacleAhead(EnemySnaps[i]))
             {
-                openLanes[i] = EnemySnaps[i];
+                OpenLanes[i] = EnemySnaps[i];
             }
             else
             {
-                openLanes[i] = null;
+                OpenLanes[i] = null;
             }
         }
-        return openLanes;
+        return OpenLanes;
     }
     private bool ObstacleAhead(GameObject castFrom)
     {

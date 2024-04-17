@@ -17,8 +17,14 @@ public class Object : MonoBehaviour
             } 
             if(EnemyCarDistanceChange != 0 )
             {
-                GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyCarController>().ChangeDistanceOverTime(EnemyCarDistanceChange);
+                var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyCarController>();
+                enemy.ChangeDistanceOverTime(EnemyCarDistanceChange);
             }
+            DestroyThis();
         }
+    }
+    public void DestroyThis()
+    {
+        Destroy(gameObject);
     }
 }
