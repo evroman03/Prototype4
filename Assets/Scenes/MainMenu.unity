@@ -778,8 +778,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Move left and right using arrow keys.\n\nPick up coins.\n\nGrab good barrels
-    and avoid bad barrels.\n\n\n\n\n     Good Barrel           Bad Barrel        
-    Coin\n\n\n\n                            Drive safe and enjoy!!!"
+    and avoid bad barrels.\n\nGood Barrel = Yellow       Bad Barrel  = Brown    Coin
+    = Coin\n\n\n\n                            Drive safe and enjoy!!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
