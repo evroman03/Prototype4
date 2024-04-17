@@ -53,6 +53,10 @@ public class Object : MonoBehaviour
             }
             DestroyThis();
         }
+        if(other.CompareTag("LaneEnd"))
+        {
+            DestroyThis();
+        }
     }
     public void DestroyThis()
     {
