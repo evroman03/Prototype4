@@ -68,8 +68,9 @@ public class ScoreManager : MonoBehaviour
     public void DecreaseMultiplier()
     {
         timeSinceHit = 0;
-        multiplier += -levelsToRemove;
+
         GameController.Instance.ChangeBackgroundSpeed(-5 * multiplier);
+        multiplier += -levelsToRemove;
         if (multiplier <= 0)
         {
             multiplier = 1;
