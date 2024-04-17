@@ -417,7 +417,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 4931424932171066017}
-  multiplierText: {fileID: 0}
+  multiplierText: {fileID: 2756822637509166420}
+  score: 0
   multiplier: 1
   timeSinceHit: 0
   levelsToRemove: 1

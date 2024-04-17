@@ -27,12 +27,10 @@ public class GameController : MonoBehaviour
     public RepeatingBackground[] Backgrounds;
 
 
-    public GameObject[] Snaps;
-    public GameObject[] EnemySnaps;
     public GameObject MoveTowards, BackgroundSpawn;
 
 
-    [HideInInspector] public int PlayerCenterSnap, EnemyCenterSnap;
+
     private RepeatingBackground temp;
 
 
@@ -41,8 +39,7 @@ public class GameController : MonoBehaviour
     {
         Application.targetFrameRate = 60;
         SpawnBackground(true);
-        PlayerCenterSnap = Snaps.Length / 2;
-        EnemyCenterSnap = EnemySnaps.Length/2;
+
         if (GameObject.FindGameObjectWithTag("Player") == null)
         {
             Player = Instantiate(Player);
@@ -52,9 +49,10 @@ public class GameController : MonoBehaviour
             Enemy = Instantiate(Enemy);
             Enemy.GetComponentInChildren<EnemyCarController>().GameReady();
         }
-        Player.transform.position = Snaps[PlayerCenterSnap].transform.position;
-        Enemy.transform.position = EnemySnaps[EnemyCenterSnap].transform.position;
+        Player.transform.position = LaneManager.Instance.PlayerSnaps[LaneManager.Instance.PlayerCenterSnap].transform.position;
+        Enemy.transform.position = LaneManager.Instance.EnemySnaps[LaneManager.Instance.EnemyCenterSnap].transform.position;
         PlayerController.Instance.GameReady();
+        LaneManager.Instance.GameReady();
     }
     public void Update()
     {

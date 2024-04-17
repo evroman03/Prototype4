@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInput playerInput;
     private InputAction left, right;
     private GameObject player;
-    private GameController gC;
+    private LaneManager LM;
 
     #region Singleton
     private static PlayerController instance;
@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
     public void GameReady()
     {
         ControlPanel(true);
-        gC = GameController.Instance;
-        currentSnap = gC.PlayerCenterSnap;
-        player = gC.Player;
+        LM = LaneManager.Instance;
+        currentSnap = LM.PlayerCenterSnap;
+        player = GameController.Instance.Player;
     }
   
     public int CurrentSnap()
@@ -44,14 +44,14 @@ public class PlayerController : MonoBehaviour
     }
     public bool CanMoveRight()
     {
-        return (currentSnap != gC.Snaps.Length-1);
+        return (currentSnap != LM.PlayerSnaps.Length-1);
     }
     public void MoveLeft()
     {
         if (CanMoveLeft())
         {
             currentSnap -= 1;
-            player.transform.position = gC.Snaps[currentSnap].transform.position;
+            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
         }
     }
     public void MoveRight()
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         if(CanMoveRight())
         {
             currentSnap += 1;
-            player.transform.position = gC.Snaps[currentSnap].transform.position;
+            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
         }
     }
 

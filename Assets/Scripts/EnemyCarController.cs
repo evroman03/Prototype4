@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyCarController : MonoBehaviour
 {
-    private int currentSnap;
-    private GameController gC;
+    [HideInInspector] public int currentSnap;
+    private LaneManager LM;
     private GameObject enemy;
+    [HideInInspector] public float detectionDistance;
     public Transform barrelSpawn;
     public GameObject[] ThingsToThrow;
     public enum EnemyState
@@ -20,10 +22,10 @@ public class EnemyCarController : MonoBehaviour
 
     public void GameReady()
     {
-        gC = GameController.Instance;
-        currentSnap = gC.EnemyCenterSnap;
-        enemy = gC.Enemy;
-
+        LM = LaneManager.Instance;
+        currentSnap = LM.EnemyCenterSnap;
+        enemy = GameController.Instance.Enemy;
+        //StartCoroutine(AvoidObstacle());
         //currentState = EnemyState.MovingLeft;
         //currentCoroutine = StartCoroutine(MovingLeft());
     }
@@ -113,11 +115,70 @@ public class EnemyCarController : MonoBehaviour
         }
     }
 
-
-
-
-
-
+    private IEnumerator AvoidObstacle()
+    {
+        while(true)
+        {
+            if (ObstacleStraight())
+            {
+                if (ObstacleLeft(1))
+                {
+                    MoveRight();
+                }
+                else if (ObstacleRight(1))
+                {
+                    MoveLeft();
+                }
+            }
+            yield return new WaitForFixedUpdate();
+        }    
+    }
+    private bool ObstacleStraight()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(LM.EnemySnaps[currentSnap].transform.position, transform.forward, out hit, detectionDistance))
+        {
+            if (hit.collider.CompareTag("Obstacle"))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool ObstacleLeft(int snapsToCheck)
+    {
+        if(currentSnap-snapsToCheck >= 0)
+        {
+            print("INSIDE");
+            RaycastHit hit;
+            if (Physics.Raycast(LM.EnemySnaps[(currentSnap - snapsToCheck)].transform.position, transform.forward, out hit, detectionDistance))
+            {
+                if (hit.collider.CompareTag("Obstacle"))
+                {
+                    print("FOUNDOBSTACLELEFT");
+                    return true;
+                }
+            }
+        } 
+        return false;
+    }
+    private bool ObstacleRight(int snapsToCheck) 
+    {
+        if(currentSnap+snapsToCheck <= LM.EnemySnaps.Length - 1)
+        {
+            print("INSIDE2");
+            RaycastHit hit;
+            if (Physics.Raycast(LM.EnemySnaps[(currentSnap + snapsToCheck)].transform.position, transform.forward, out hit, detectionDistance))
+            {
+                if (hit.collider.CompareTag("Obstacle"))
+                {
+                    print("FOUNDOBSTACLERIGHT");
+                    return true;
+                }
+            }
+        }  
+        return false;
+    }
 
     public bool CanMoveLeft()
     {
@@ -125,14 +186,14 @@ public class EnemyCarController : MonoBehaviour
     }
     public bool CanMoveRight()
     {
-        return (currentSnap != gC.EnemySnaps.Length - 1);
+        return (currentSnap != LM.EnemySnaps.Length - 1);
     }
     public void MoveLeft()
     {
         if (CanMoveLeft())
         {
             currentSnap -= 1;
-            enemy.transform.position = new Vector3(gC.EnemySnaps[currentSnap].transform.position.x, gC.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
+            enemy.transform.position = new Vector3(LM.EnemySnaps[currentSnap].transform.position.x, LM.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
         }
     }
     public void MoveRight()
@@ -140,7 +201,7 @@ public class EnemyCarController : MonoBehaviour
         if (CanMoveRight())
         {
             currentSnap += 1;
-            enemy.transform.position = new Vector3(gC.EnemySnaps[currentSnap].transform.position.x, gC.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
+            enemy.transform.position = new Vector3(LM.EnemySnaps[currentSnap].transform.position.x, LM.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
         }
     }
     public IEnumerator ChangeDistanceOverTime(float distance)

@@ -7,6 +7,7 @@ TagManager:
   - MoveTowards
   - Spawn
   - Enemy
+  - Obstacle
   layers:
   - Default
   - TransparentFX

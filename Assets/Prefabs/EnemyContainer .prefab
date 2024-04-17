@@ -149,9 +149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6356d232def660d4d904591362dafb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSnap: 0
-  enemy: {fileID: 0}
+  detectionDistance: 5
   barrelSpawn: {fileID: 5510755017684459041}
+  ThingsToThrow: []
+  currentState: 0
 --- !u!1 &7672619340922217995
 GameObject:
   m_ObjectHideFlags: 0
