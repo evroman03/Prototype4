@@ -99,7 +99,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreChangeFactor: -100
-  EnemyCarDistanceChange: 5
+  EnemyCarDistanceChange: -2
+  isBarrel: 0
+  enemyCar: {fileID: 0}
 --- !u!65 &7477170640290372618
 BoxCollider:
   m_ObjectHideFlags: 0
