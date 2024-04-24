@@ -22,8 +22,8 @@ public class GameController : MonoBehaviour
     #endregion
 
     public float MaxSpeed = 50, MinSpeed = 30f, targetBackgroundSpeed, currentBackgroundSpeed, currentTime, backgroundSpeedPerStep;
-    public float[] timesToNextSpeedUps;
-    public int[] speedIncreasePerUp;
+    public float[] timesToNextBGSpeedUps;
+    public int[] speedIncreasePerBGUp;
     [HideInInspector] public int currentBackgroundSpeedIndex = 0;
     public GameObject Player, Enemy;
     private EnemyCarController eC;
@@ -70,9 +70,9 @@ public class GameController : MonoBehaviour
         {
             currentTime += Time.deltaTime;
 
-            if (currentBackgroundSpeedIndex < timesToNextSpeedUps.Length && currentTime >= timesToNextSpeedUps[currentBackgroundSpeedIndex])
+            if (currentBackgroundSpeedIndex < timesToNextBGSpeedUps.Length && currentTime >= timesToNextBGSpeedUps[currentBackgroundSpeedIndex])
             {
-                ChangeBackgroundSpeed(speedIncreasePerUp[currentBackgroundSpeedIndex]);
+                ChangeBackgroundSpeed(speedIncreasePerBGUp[currentBackgroundSpeedIndex]);
                 currentBackgroundSpeedIndex++;
             }
             //If the player isnt hitting an obstacle, reduce their distance

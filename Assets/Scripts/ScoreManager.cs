@@ -38,19 +38,19 @@ public class ScoreManager : MonoBehaviour
         {
             multiplier = 2;
             UpdateMultiplierText();
-            GameController.Instance.ChangeBackgroundSpeed(5 * multiplier);
+            
         }
         else if(timeSinceHit >= 30 && timeSinceHit < 45)
         {
             multiplier = 3;
             UpdateMultiplierText();
-            GameController.Instance.ChangeBackgroundSpeed(5 * multiplier);
+
         }
         else if(timeSinceHit >= 45 && timeSinceHit < 60)
         {
             multiplier = 4;
             UpdateMultiplierText();
-            GameController.Instance.ChangeBackgroundSpeed(5 * multiplier);
+
         }
     }
     // Function to add points to the score
@@ -69,7 +69,6 @@ public class ScoreManager : MonoBehaviour
     {
         timeSinceHit = 0;
 
-        GameController.Instance.ChangeBackgroundSpeed(-5 * multiplier);
         multiplier += -levelsToRemove;
         if (multiplier <= 0)
         {

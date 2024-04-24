@@ -75,7 +75,10 @@ public class AnyObject : MonoBehaviour
 
                 //For the obstacle timer
                 GameController.Instance.currentTime = 0;
-                GameController.Instance.currentBackgroundSpeedIndex--;
+                //GameController.Instance.currentBackgroundSpeedIndex = Mathf.Clamp(GameController.Instance.currentBackgroundSpeedIndex-1;
+
+                //For the multiplier
+
             }
             DestroyThis();
         }
