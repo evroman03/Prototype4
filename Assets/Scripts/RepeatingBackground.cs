@@ -12,7 +12,7 @@ public class RepeatingBackground : MonoBehaviour
     }
     private void Update()
     {
-        var step = GameController.Instance.BackgroundSpeed * Time.deltaTime;
+        var step = GameController.Instance.currentBackgroundSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(rb.position, moveTowards.transform.position, step);
     }
     private void OnTriggerEnter(Collider other)
