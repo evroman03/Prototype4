@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Object : MonoBehaviour
+public class AnyObject : MonoBehaviour
 {
     public int ScoreChangeFactor;
     public float EnemyCarDistanceChange;
@@ -50,6 +50,7 @@ public class Object : MonoBehaviour
             {
                 var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponentInChildren<EnemyCarController>();
                 enemy.StartChangeDistanceCoroutine(EnemyCarDistanceChange);
+                GameController.Instance.ChangeBackgroundSpeed((int)EnemyCarDistanceChange);
             }
             DestroyThis();
         }
