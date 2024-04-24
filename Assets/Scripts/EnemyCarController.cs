@@ -8,6 +8,7 @@ using UnityEngine;
 public class EnemyCarController : MonoBehaviour
 {
     [HideInInspector] public int currentSnap;
+    [HideInInspector] public float OriginalDist;
     private LaneManager LM;
     private GameObject enemy;
     public float detectionDistance, maxChaseDist, minChaseDist;
@@ -172,8 +173,14 @@ public class EnemyCarController : MonoBehaviour
     }
     public void StartChangeDistanceCoroutine(float distance)
     {
-
-        StartCoroutine(ChangeDistanceOverTime(distance));
+        // a check to make sure the lead car doesnt get too close/far
+        float theDistance = enemy.transform.position.z + distance;
+        float min = minChaseDist - OriginalDist;
+        float max = maxChaseDist + OriginalDist;    
+        if (theDistance > min && theDistance < max)
+        {
+            StartCoroutine(ChangeDistanceOverTime(distance));
+        }
     }
     public IEnumerator ChangeDistanceOverTime(float distance)
     {
@@ -189,8 +196,6 @@ public class EnemyCarController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null; // Wait for the next frame
         }
-
-        // Ensure we reach the exact target position
         enemy.transform.position = targetPosition;
     }
     public void SpawnBarrel(GameObject barrel)

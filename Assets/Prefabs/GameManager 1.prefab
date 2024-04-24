@@ -49,6 +49,12 @@ MonoBehaviour:
   MaxSpeed: 50
   MinSpeed: 30
   BackgroundSpeed: 30
+  currentTime: 0
+  timesToNextSpeedUps:
+  - 15
+  - 25
+  - 30
+  speedIncreasePerUp: 0a0000000f00000014000000
   Player: {fileID: 3424987760763187675, guid: 4c087584cbe05f9489d817c2ae6d1889, type: 3}
   Enemy: {fileID: 7672619340922217995, guid: aa3fe3fe2c7775f49b6f8bc74f81de66, type: 3}
   Backgrounds:

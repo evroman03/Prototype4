@@ -135,6 +135,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: backgroundSpeedPerStep
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextSpeedUps.Array.data[0]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextSpeedUps.Array.data[1]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextSpeedUps.Array.data[2]
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6844593069411138662, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
