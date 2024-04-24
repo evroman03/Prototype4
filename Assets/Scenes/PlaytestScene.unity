@@ -865,16 +865,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095bd7532f6d21343a39dc297e39c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitObstacle: {fileID: 8300000, guid: 14697bb703b55d74581939e9b345a5a3, type: 3}
+  HitRoadBlock: {fileID: 8300000, guid: 14697bb703b55d74581939e9b345a5a3, type: 3}
+  HitTrashBin: {fileID: 8300000, guid: 8655e89e12499104c83aecd306d74a1f, type: 3}
+  HitHotDogCar: {fileID: 8300000, guid: 95aee7400fe9adc4a900f00ec49bc4a7, type: 3}
+  HitPedestrian: {fileID: 0}
   CoinCollected: {fileID: 8300000, guid: 447eac19cb9fa174c9c9a62206d3be73, type: 3}
   GoodBarrelCollected: {fileID: 0}
   HitBadBarrel: {fileID: 8300000, guid: b5884e7a49a31f04a8021f6f33a1c8fe, type: 3}
   RollingBarrel: {fileID: 8300000, guid: 03fddaeb04a78a84d813f973b895ee73, type: 3}
+  BouncingBarrel: {fileID: 8300000, guid: ae955f05a2dc9624d955a37f0b247d4a, type: 3}
   RaiseMultiplier: {fileID: 8300000, guid: 8f664cd7362fb3840a6470f2e75a28b6, type: 3}
   GameComplete: {fileID: 8300000, guid: 20ea53ce146f3ac41b0a13b6be9ccd0f, type: 3}
   SwitchingLanes: {fileID: 8300000, guid: dc150bb9f7fa6a94388d43a934a91500, type: 3}
   CarChase: {fileID: 8300000, guid: 02d47defa1583ec4c8d78d6b367462be, type: 3}
-  RevvingEngine: {fileID: 0}
   audioLocation: {fileID: 963194225}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

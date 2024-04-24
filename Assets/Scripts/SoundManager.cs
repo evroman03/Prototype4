@@ -22,6 +22,7 @@ public class SoundManager : MonoBehaviour
     #endregion
 
     [SerializeField] private AudioClip HitRoadBlock;
+    [SerializeField] private AudioClip HitTrashBin;
     [SerializeField] private AudioClip HitHotDogCar;
     [SerializeField] private AudioClip HitPedestrian;
     [SerializeField] private AudioClip CoinCollected;
@@ -53,6 +54,12 @@ public class SoundManager : MonoBehaviour
     public void ObstacleHit()
     {
         AudioSource.PlayClipAtPoint(HitRoadBlock, audioLocation.transform.position);
+    }
+
+    //called when the player hits a trash bin
+    public void TrashHit()
+    {
+        AudioSource.PlayClipAtPoint(HitTrashBin, audioLocation.transform.position);
     }
 
     //called when the player hits the hot dog truck
