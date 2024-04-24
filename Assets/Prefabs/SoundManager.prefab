@@ -44,12 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 095bd7532f6d21343a39dc297e39c0be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitRoadBlock: {fileID: 8300000, guid: 14697bb703b55d74581939e9b345a5a3, type: 3}
   HitTrashBin: {fileID: 8300000, guid: 8655e89e12499104c83aecd306d74a1f, type: 3}
   HitHotDogCar: {fileID: 8300000, guid: 95aee7400fe9adc4a900f00ec49bc4a7, type: 3}
-  HitPedestrian: {fileID: 0}
   CoinCollected: {fileID: 8300000, guid: 447eac19cb9fa174c9c9a62206d3be73, type: 3}
-  GoodBarrelCollected: {fileID: 0}
+  GoodBarrelCollected: {fileID: 8300000, guid: a84e34e6e4740734abdd3fda9bdc01fb, type: 3}
   HitBadBarrel: {fileID: 8300000, guid: b5884e7a49a31f04a8021f6f33a1c8fe, type: 3}
   RollingBarrel: {fileID: 8300000, guid: 03fddaeb04a78a84d813f973b895ee73, type: 3}
   BouncingBarrel: {fileID: 8300000, guid: ae955f05a2dc9624d955a37f0b247d4a, type: 3}

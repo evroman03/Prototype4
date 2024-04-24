@@ -21,10 +21,8 @@ public class SoundManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private AudioClip HitRoadBlock;
     [SerializeField] private AudioClip HitTrashBin;
     [SerializeField] private AudioClip HitHotDogCar;
-    [SerializeField] private AudioClip HitPedestrian;
     [SerializeField] private AudioClip CoinCollected;
     [SerializeField] private AudioClip GoodBarrelCollected;
     [SerializeField] private AudioClip HitBadBarrel;
@@ -49,13 +47,6 @@ public class SoundManager : MonoBehaviour
         
     }
 
-
-    //called when the player hits a road block obstacle
-    public void ObstacleHit()
-    {
-        AudioSource.PlayClipAtPoint(HitRoadBlock, audioLocation.transform.position);
-    }
-
     //called when the player hits a trash bin
     public void TrashHit()
     {
@@ -66,12 +57,6 @@ public class SoundManager : MonoBehaviour
     public void HDCarHit()
     {
         AudioSource.PlayClipAtPoint(HitHotDogCar, audioLocation.transform.position);
-    }
-
-    //called when the player hits the pedestrian
-    public void PedestrianHit()
-    {
-        AudioSource.PlayClipAtPoint(HitPedestrian, audioLocation.transform.position);
     }
 
     //called when the player collects a coin
