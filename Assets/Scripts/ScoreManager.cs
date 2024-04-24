@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class ScoreManager : MonoBehaviour
     #endregion
     public TMP_Text scoreText; // Reference to the TextMeshPro Text component where the score will be displayed
     public TMP_Text multiplierText; //Reference to the TextMeshPro Text component where the multiplier will be displayed
-    [SerializeField] int score = 0; // The current score
+    public int scoreStep = 5; // Amount that the score will increment/decrement
+    public float step = 0.01f; // How fast the score will increment/decrement
+    [SerializeField] int targetscore = 0; // Computers score (total score)
+    [SerializeField] int currentscore = 0;// The current score (coroutines score)
     [SerializeField] int multiplier = 1; // The current multiplier
     [SerializeField] float timeSinceHit;
     [SerializeField] int levelsToRemove = 1;
@@ -30,6 +34,7 @@ public class ScoreManager : MonoBehaviour
     {
         UpdateScoreText();
         UpdateMultiplierText();
+        StartCoroutine(StartOdometer());
     }
     private void Update()
     {
@@ -56,12 +61,11 @@ public class ScoreManager : MonoBehaviour
     // Function to add points to the score
     public void ChangeScore(int points)
     {
-        score += points * multiplier;
-        if(score < 0)
+        targetscore += points * multiplier;
+        if(targetscore < 0)
         {
-            score = 0;
+            targetscore = 0;
         }
-        UpdateScoreText();
         SaveScore();
     }
 
@@ -82,7 +86,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + score.ToString();
+            scoreText.text = "Score: " + currentscore.ToString();
         }
     }
 
@@ -96,8 +100,35 @@ public class ScoreManager : MonoBehaviour
 
     private void SaveScore()
     {
-        PlayerPrefs.SetInt("Score", score);
+        PlayerPrefs.SetInt("Score", currentscore);
         PlayerPrefs.Save();
     }
-
+    IEnumerator StartOdometer()
+    {
+        print("HEREFIRST");
+        while(true)
+        {
+            if (currentscore < targetscore)
+            {
+                print("HERE");
+                currentscore += scoreStep;
+                if (currentscore > targetscore)
+                {
+                    currentscore = targetscore;
+                }
+                UpdateScoreText();
+            }
+            if (currentscore > targetscore)
+            {
+                print("HERE2");
+                currentscore -= scoreStep;
+                if (currentscore < targetscore)
+                {
+                    currentscore = targetscore;
+                }
+                UpdateScoreText();
+            }
+            yield return new WaitForSeconds(step);
+        }
+    }
 }
