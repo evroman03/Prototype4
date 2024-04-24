@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSnap: 0
   playerInput: {fileID: 4130709039265398398}
+  carAnimator: {fileID: 0}
 --- !u!114 &4130709039265398398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +165,10 @@ PrefabInstance:
     - target: {fileID: 4987152851174152741, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
       propertyPath: m_Name
       value: CarPivot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7860910233065976128, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

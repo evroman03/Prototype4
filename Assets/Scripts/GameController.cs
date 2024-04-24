@@ -90,10 +90,16 @@ public class GameController : MonoBehaviour
     }
     public IEnumerator SpeedChanger()
     {
-        while(targetBackgroundSpeed > currentBackgroundSpeed)
+        while(true)
         {
-            currentBackgroundSpeed = Mathf.Clamp(currentBackgroundSpeed + backgroundSpeedPerStep, MinSpeed, MaxSpeed);
-            print(currentBackgroundSpeed);
+            if(targetBackgroundSpeed > currentBackgroundSpeed)
+            {
+                currentBackgroundSpeed = Mathf.Clamp(currentBackgroundSpeed + backgroundSpeedPerStep, MinSpeed, MaxSpeed);
+            }
+            else if (targetBackgroundSpeed < currentBackgroundSpeed)
+            {
+                currentBackgroundSpeed = Mathf.Clamp(currentBackgroundSpeed - backgroundSpeedPerStep, MinSpeed, MaxSpeed);
+            }
             yield return new WaitForSeconds(0.25f);
         }
     }
