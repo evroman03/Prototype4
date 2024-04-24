@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     private InputAction left, right;
     private GameObject player;
     private LaneManager LM;
+    public Animator carAnimator;
 
     #region Singleton
     private static PlayerController instance;
@@ -50,19 +51,28 @@ public class PlayerController : MonoBehaviour
     {
         if (CanMoveLeft())
         {
-            currentSnap -= 1;
-            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            //currentSnap -= 1;
+            //player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
         }
     }
     public void MoveRight()
     {
         if(CanMoveRight())
         {
-            currentSnap += 1;
-            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            //currentSnap += 1;
+            //player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
         }
     }
-
+    public void AnimDoneLeft()
+    {
+        currentSnap -= 1;
+        player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+    }
+    public void AnimDoneRight()
+    {
+        currentSnap += 1;
+        player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+    }
 
 
 
