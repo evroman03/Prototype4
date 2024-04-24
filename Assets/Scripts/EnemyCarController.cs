@@ -8,9 +8,10 @@ using UnityEngine;
 public class EnemyCarController : MonoBehaviour
 {
     [HideInInspector] public int currentSnap;
+    [HideInInspector] public float OriginalDist;
     private LaneManager LM;
     private GameObject enemy;
-    public float detectionDistance;
+    public float detectionDistance, maxChaseDist, minChaseDist;
     public Transform barrelSpawn;
     public GameObject[] ThingsToThrow;
     public enum EnemyState
@@ -27,8 +28,6 @@ public class EnemyCarController : MonoBehaviour
         enemy = GameController.Instance.Enemy;
         StartCoroutine(AvoidObstacle());
         StartCoroutine(SpawnStuff());
-        //currentState = EnemyState.MovingLeft;
-        //currentCoroutine = StartCoroutine(MovingLeft());
     }
     public void GSM(EnemyState state)
     {
@@ -172,32 +171,38 @@ public class EnemyCarController : MonoBehaviour
             enemy.transform.position = new Vector3(LM.EnemySnaps[currentSnap].transform.position.x, LM.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
         }
     }
+    public void StartChangeDistanceCoroutine(float distance)
+    {
+        // a check to make sure the lead car doesnt get too close/far
+        float theDistance = enemy.transform.position.z + distance;
+        float min = minChaseDist - OriginalDist;
+        float max = maxChaseDist + OriginalDist;    
+        if (theDistance > min && theDistance < max)
+        {
+            StartCoroutine(ChangeDistanceOverTime(distance));
+        }
+    }
     public IEnumerator ChangeDistanceOverTime(float distance)
     {
-        print("HERE2");
         float duration = 1f;
         float elapsedTime = 0.0f;
         Vector3 initialPosition = enemy.transform.position;
         Vector3 targetPosition = new Vector3(initialPosition.x, initialPosition.y, initialPosition.z - distance);
-
-        while (elapsedTime < duration)
+        float t = 0;
+        while (t < 1)
         {
-            float t = elapsedTime / duration;
+            t = elapsedTime / duration;
             enemy.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
             elapsedTime += Time.deltaTime;
-            print(t);
             yield return null; // Wait for the next frame
         }
-
-        // Ensure we reach the exact target position
         enemy.transform.position = targetPosition;
-        print("HERE3");
     }
     public void SpawnBarrel(GameObject barrel)
     {
         if(barrel != null)
         {
-            Instantiate(barrel, barrelSpawn);
+            Instantiate(barrel, barrelSpawn.position, Quaternion.identity);
         }
     }
 }

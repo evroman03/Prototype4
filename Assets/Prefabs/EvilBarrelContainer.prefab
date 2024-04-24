@@ -66,7 +66,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669935633304457244}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 059d457a2ea34ee4384b0eab3fead696, type: 2}
   m_CullingMode: 0
@@ -339,8 +339,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreChangeFactor: -500
-  EnemyCarDistanceChange: 5
+  EnemyCarDistanceChange: -5
   isBarrel: 1
+  enemyCar: {fileID: 0}
 --- !u!136 &5008945119978274628
 CapsuleCollider:
   m_ObjectHideFlags: 0

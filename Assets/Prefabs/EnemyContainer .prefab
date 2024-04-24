@@ -80,6 +80,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSnap: 0
   detectionDistance: 7
+  maxChaseDist: 30
+  minChaseDist: 10
   barrelSpawn: {fileID: 5510755017684459041}
   ThingsToThrow:
   - {fileID: 2491192500025300348, guid: ec7569d5617e66a42855a42aca24c85c, type: 3}

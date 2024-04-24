@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Object : MonoBehaviour
+public class AnyObject : MonoBehaviour
 {
     public int ScoreChangeFactor;
     public float EnemyCarDistanceChange;
     public bool isBarrel;
     private Rigidbody rb;
     private GameObject moveTowards;
-    private EnemyCarController enemyCar;
+    public EnemyCarController enemyCar;
 
 
     private void Start()
@@ -48,8 +48,9 @@ public class Object : MonoBehaviour
             } 
             if(EnemyCarDistanceChange != 0 )
             {
-                var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyCarController>();
-                enemy.ChangeDistanceOverTime(EnemyCarDistanceChange);
+                var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponentInChildren<EnemyCarController>();
+                enemy.StartChangeDistanceCoroutine(EnemyCarDistanceChange);
+                GameController.Instance.ChangeBackgroundSpeed((int)EnemyCarDistanceChange);
             }
             DestroyThis();
         }
