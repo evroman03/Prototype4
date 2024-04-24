@@ -25,8 +25,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip CoinCollected;
     [SerializeField] private AudioClip GoodBarrelCollected;
     [SerializeField] private AudioClip HitBadBarrel;
+    [SerializeField] private AudioClip RollingBarrel;
     [SerializeField] private AudioClip RaiseMultiplier;
-    [SerializeField] private AudioClip JumpSound;
     [SerializeField] private AudioClip GameComplete;
     [SerializeField] private AudioClip SwitchingLanes;
     [SerializeField] private AudioClip CarChase;
@@ -71,16 +71,16 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(HitBadBarrel, audioLocation.transform.position);
     }
 
+    //can be called when the bad barrel is spawned
+    private void RollTheBarrel()
+    {
+        AudioSource.PlayClipAtPoint(RollingBarrel, audioLocation.transform.position);
+    }
+
     //called when the score multiplier increases
     public void MultiplierRaised()
     {
         AudioSource.PlayClipAtPoint(RaiseMultiplier, audioLocation.transform.position);
-    }
-
-    //called when the player uses the jump action
-    public void JumpNoise()
-    {
-        AudioSource.PlayClipAtPoint(JumpSound, audioLocation.transform.position);
     }
 
     //called when the countdown timer reaches zero
@@ -106,6 +106,4 @@ public class SoundManager : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(RevvingEngine, audioLocation.transform.position);
     }
-
-
 }
