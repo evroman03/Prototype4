@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CarAnimationCaller : MonoBehaviour
 {
-
+    public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +15,15 @@ public class CarAnimationCaller : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void TurnedLeft()
+    {
+        playerController.AnimDoneLeft();
+    }
+
+    public void TurnedRight()
+    {
+        playerController.AnimDoneRight();
     }
 }

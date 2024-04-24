@@ -51,16 +51,18 @@ public class PlayerController : MonoBehaviour
     {
         if (CanMoveLeft())
         {
-            currentSnap -= 1;
-            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            //currentSnap -= 1;
+            //player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            carAnimator.SetTrigger("TurnedLeft");
         }
     }
     public void MoveRight()
     {
         if(CanMoveRight())
         {
-            currentSnap += 1;
-            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            //currentSnap += 1;
+            //player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            carAnimator.SetTrigger("TurnedRight");
         }
     }
     public void AnimDoneLeft()
