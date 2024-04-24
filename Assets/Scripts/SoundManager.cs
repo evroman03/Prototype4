@@ -21,16 +21,18 @@ public class SoundManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private AudioClip HitObstacle;
+    [SerializeField] private AudioClip HitRoadBlock;
+    [SerializeField] private AudioClip HitHotDogCar;
+    [SerializeField] private AudioClip HitPedestrian;
     [SerializeField] private AudioClip CoinCollected;
     [SerializeField] private AudioClip GoodBarrelCollected;
     [SerializeField] private AudioClip HitBadBarrel;
     [SerializeField] private AudioClip RollingBarrel;
+    [SerializeField] private AudioClip BouncingBarrel;
     [SerializeField] private AudioClip RaiseMultiplier;
     [SerializeField] private AudioClip GameComplete;
     [SerializeField] private AudioClip SwitchingLanes;
     [SerializeField] private AudioClip CarChase;
-    [SerializeField] private AudioClip RevvingEngine;
 
     [SerializeField] private GameObject audioLocation;
 
@@ -50,7 +52,19 @@ public class SoundManager : MonoBehaviour
     //called when the player hits a road block obstacle
     public void ObstacleHit()
     {
-        AudioSource.PlayClipAtPoint(HitObstacle, audioLocation.transform.position);
+        AudioSource.PlayClipAtPoint(HitRoadBlock, audioLocation.transform.position);
+    }
+
+    //called when the player hits the hot dog truck
+    public void HDCarHit()
+    {
+        AudioSource.PlayClipAtPoint(HitHotDogCar, audioLocation.transform.position);
+    }
+
+    //called when the player hits the pedestrian
+    public void PedestrianHit()
+    {
+        AudioSource.PlayClipAtPoint(HitPedestrian, audioLocation.transform.position);
     }
 
     //called when the player collects a coin
@@ -72,9 +86,15 @@ public class SoundManager : MonoBehaviour
     }
 
     //can be called when the bad barrel is spawned
-    private void RollTheBarrel()
+    public void RollingBadBarrel()
     {
         AudioSource.PlayClipAtPoint(RollingBarrel, audioLocation.transform.position);
+    }
+
+    //can be called when the good barrel is spawned
+    public void BouncingGoodBarrel()
+    {
+        AudioSource.PlayClipAtPoint(BouncingBarrel, audioLocation.transform.position);
     }
 
     //called when the score multiplier increases
@@ -101,9 +121,4 @@ public class SoundManager : MonoBehaviour
         AudioSource.PlayClipAtPoint(CarChase, audioLocation.transform.position);
     }
 
-    //called at the start of the game
-    public void StartYourEngines()
-    {
-        AudioSource.PlayClipAtPoint(RevvingEngine, audioLocation.transform.position);
-    }
 }
