@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -156,32 +156,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
-      propertyPath: timesToNextSpeedUps.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
-      propertyPath: speedIncreasePerUp.Array.data[0]
+      propertyPath: timesToNextSpeedUps.Array.data[0]
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
-      propertyPath: speedIncreasePerUp.Array.data[1]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
-      propertyPath: speedIncreasePerUp.Array.data[2]
+      propertyPath: timesToNextSpeedUps.Array.data[1]
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
-      propertyPath: timesToNextSpeedUps.Array.data[0]
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
-      propertyPath: timesToNextSpeedUps.Array.data[1]
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
       propertyPath: timesToNextSpeedUps.Array.data[2]
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6844593069411138662, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
       propertyPath: m_LocalPosition.x
@@ -816,6 +800,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6159493713012809597, guid: c91bf8fc832e86640b482f2e4a83b1ed, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+    - target: {fileID: 6159493713012809597, guid: c91bf8fc832e86640b482f2e4a83b1ed, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6030558129590121401, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+    - target: {fileID: 6159493713012809597, guid: c91bf8fc832e86640b482f2e4a83b1ed, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6737707943542375857, guid: c91bf8fc832e86640b482f2e4a83b1ed, type: 3}
       propertyPath: m_Name
       value: Timer
@@ -871,6 +867,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1615038009610993536, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2756822637509166420, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+    - target: {fileID: 2756822637509166420, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6030558129590121401, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+    - target: {fileID: 2756822637509166420, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931424932171066017, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+    - target: {fileID: 4931424932171066017, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6030558129590121401, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+    - target: {fileID: 4931424932171066017, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8764763284894815403, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}

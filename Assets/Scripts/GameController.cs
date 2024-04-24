@@ -21,11 +21,12 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    public float MaxSpeed = 50, MinSpeed = 30f, BackgroundSpeed, currentTime;
-    public float[] timesToNextSpeedUps;
-    public int[] speedIncreasePerUp;
-    private int currentBackgroundSpeedIndex = 0;
+    public float MaxSpeed = 50, MinSpeed = 30f, targetBackgroundSpeed, currentBackgroundSpeed, currentTime, backgroundSpeedPerStep;
+    public float[] timesToNextBGSpeedUps;
+    public int[] speedIncreasePerBGUp;
+    [HideInInspector] public int currentBackgroundSpeedIndex = 0;
     public GameObject Player, Enemy;
+    private EnemyCarController eC;
     public RepeatingBackground[] Backgrounds;
 
 
@@ -52,12 +53,15 @@ public class GameController : MonoBehaviour
         }
         LaneManager.Instance.GameReady();
         PlayerController.Instance.GameReady();
-        var temp = Enemy.GetComponent<EnemyCarController>();
-        temp.GameReady();
+        eC = Enemy.GetComponent<EnemyCarController>();
+        eC.GameReady();
         Player.transform.position = LaneManager.Instance.PlayerSnaps[LaneManager.Instance.PlayerCenterSnap].transform.position;
         Enemy.transform.position = LaneManager.Instance.EnemySnaps[LaneManager.Instance.EnemyCenterSnap].transform.position;
-        temp.OriginalDist = Enemy.transform.position.z;
+        eC.OriginalDist = Enemy.transform.position.z;
         StartCoroutine(ObstacleTimer());
+        StartCoroutine(SpeedChanger());
+        currentBackgroundSpeed = MinSpeed;
+        targetBackgroundSpeed = MinSpeed;
     }
   
     public IEnumerator ObstacleTimer()
@@ -66,17 +70,32 @@ public class GameController : MonoBehaviour
         {
             currentTime += Time.deltaTime;
 
-            if (currentBackgroundSpeedIndex < timesToNextSpeedUps.Length && currentTime >= timesToNextSpeedUps[currentBackgroundSpeedIndex])
+            if (currentBackgroundSpeedIndex < timesToNextBGSpeedUps.Length && currentTime >= timesToNextBGSpeedUps[currentBackgroundSpeedIndex])
             {
-                ChangeBackgroundSpeed(speedIncreasePerUp[currentBackgroundSpeedIndex]);
+                ChangeBackgroundSpeed(speedIncreasePerBGUp[currentBackgroundSpeedIndex]);
                 currentBackgroundSpeedIndex++;
+            }
+            //If the player isnt hitting an obstacle, reduce their distance
+            if(((int)currentTime) % 2 == 0)
+            {
+                eC.StartChangeDistanceCoroutine(2);
             }
             yield return null;
         }
     }
     public void ChangeBackgroundSpeed(int speed)
     {
-        BackgroundSpeed = Mathf.Clamp(BackgroundSpeed += speed, MinSpeed, MaxSpeed);
+        targetBackgroundSpeed = Mathf.Clamp(targetBackgroundSpeed + speed, MinSpeed, MaxSpeed);
+        print(targetBackgroundSpeed + " speed: " + speed);
+    }
+    public IEnumerator SpeedChanger()
+    {
+        while(targetBackgroundSpeed > currentBackgroundSpeed)
+        {
+            currentBackgroundSpeed = Mathf.Clamp(currentBackgroundSpeed + backgroundSpeedPerStep, MinSpeed, MaxSpeed);
+            print(currentBackgroundSpeed);
+            yield return new WaitForSeconds(0.25f);
+        }
     }
     public void SpawnBackground(bool start)
     {
@@ -94,35 +113,6 @@ public class GameController : MonoBehaviour
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeBackgroundSpeed(5);
-        }
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            ChangeBackgroundSpeed(-5);
-        }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            Enemy.GetComponentInChildren<EnemyCarController>().MoveLeft();
-        }
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Enemy.GetComponentInChildren<EnemyCarController>().MoveRight();
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            //Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(-10f);
-            Enemy.GetComponentInChildren<EnemyCarController>().StartCoroutine(Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistanceOverTime(-10f));
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            //Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistance(10f);
-            Enemy.GetComponentInChildren<EnemyCarController>().StartCoroutine(Enemy.GetComponentInChildren<EnemyCarController>().ChangeDistanceOverTime(10f));
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        
     }
 }
