@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2424502935563067620}
   - component: {fileID: 7860910233065976128}
-  - component: {fileID: 3783686823155617358}
+  - component: {fileID: 8793615787013951003}
   m_Layer: 0
   m_Name: CarPivot
   m_TagString: Untagged
@@ -55,7 +55,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3783686823155617358
+--- !u!114 &8793615787013951003
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

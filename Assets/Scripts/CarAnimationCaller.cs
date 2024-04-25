@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CarAnimationCaller : MonoBehaviour
 {
+    public GameObject Car;
     public PlayerController playerController;
     // Start is called before the first frame update
     void Start()
