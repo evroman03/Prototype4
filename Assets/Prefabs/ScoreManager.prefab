@@ -247,8 +247,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+  m_sharedMaterial: {fileID: -6030558129590121401, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -457,8 +457,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
+  m_sharedMaterial: {fileID: -6030558129590121401, guid: c882cacd07e93a140a982cdcf3def089, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -592,7 +592,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 4931424932171066017}
   multiplierText: {fileID: 2756822637509166420}
-  score: 0
-  multiplier: 1
-  timeSinceHit: 0
-  levelsToRemove: 1
+  UIScoreStepAmount: 5
+  UIScoreStepTime: 0.01
+  targetscore: 0
+  currentscore: 0
+  currentMultiplier: 1
+  multLevelsToRemoveOnHit: 1
+  totalTimeToNextMultLevel: 010000000300000006000000090000000a000000
+  multiplierAmounts:
+  - 1
+  - 2
+  - 3.5
+  - 4.5
+  - 10
+  currentScoreTime: 0
+  currentMultIndex: 0
