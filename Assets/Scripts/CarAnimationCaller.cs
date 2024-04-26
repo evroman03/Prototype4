@@ -23,6 +23,7 @@ public class CarAnimationCaller : MonoBehaviour
     {
         playerController.AnimDoneLeft();
         transform.rotation = origRotation;
+        Debug.Log(origRotation);
     }
 
     public void TurnedRight()
