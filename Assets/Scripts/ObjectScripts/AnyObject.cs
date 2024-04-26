@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -66,19 +67,20 @@ public class AnyObject : MonoBehaviour
             } 
             if(EnemyCarDistanceChange < 0 )
             {
+                var GC = GameController.Instance;
                 //Get the enemy and move him away from the player
                 var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponentInChildren<EnemyCarController>();
                 enemy.StartChangeDistanceCoroutine(EnemyCarDistanceChange);
 
                 //Affect the background speed 
-                GameController.Instance.ChangeBackgroundSpeed(BackgroundSpeedChange);
+                GC.ChangeBackgroundSpeed(BackgroundSpeedChange);
 
                 //For the obstacle timer
-                GameController.Instance.currentTime = 0;
-                //GameController.Instance.currentBackgroundSpeedIndex = Mathf.Clamp(GameController.Instance.currentBackgroundSpeedIndex-1;
+                GC.currentTime = 0;
+                GC.currentBackgroundSpeedIndex = Mathf.Clamp(GC.currentBackgroundSpeedIndex-1, 0, GC.timesToNextBGSpeedUps.Length-1);
 
                 //For the multiplier
-
+                ScoreManager.Instance.DecreaseMultiplier();
             }
             DestroyThis();
         }

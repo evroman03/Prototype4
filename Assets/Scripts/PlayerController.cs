@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private GameObject player;
     private LaneManager LM;
     public Animator carAnimator;
+    public bool canTurn = true;
 
     #region Singleton
     private static PlayerController instance;
@@ -49,29 +50,37 @@ public class PlayerController : MonoBehaviour
     }
     public void MoveLeft()
     {
-        if (CanMoveLeft())
+        if (CanMoveLeft() && canTurn)
         {
-            currentSnap -= 1;
-            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            //currentSnap -= 1;
+            //player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            canTurn = false;
+            carAnimator.SetTrigger("TurnedLeft");
         }
     }
     public void MoveRight()
     {
-        if(CanMoveRight())
+        if(CanMoveRight() && canTurn)
         {
-            currentSnap += 1;
-            player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            //currentSnap += 1;
+            //player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+            canTurn = false;
+            carAnimator.SetTrigger("TurnedRight");
         }
     }
     public void AnimDoneLeft()
     {
         currentSnap -= 1;
         player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+        carAnimator.SetTrigger("FinishedTurn");
+        canTurn = true;
     }
     public void AnimDoneRight()
     {
         currentSnap += 1;
         player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
+        carAnimator.SetTrigger("FinishedTurn");
+        canTurn = true;
     }
 
 

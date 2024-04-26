@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSnap: 0
   playerInput: {fileID: 4130709039265398398}
+  carAnimator: {fileID: 1394857548552129409}
 --- !u!114 &4130709039265398398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,11 +166,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarPivot
       objectReference: {fileID: 0}
+    - target: {fileID: 7860910233065976128, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8793615787013951003, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 5900744613516179088}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
+--- !u!95 &1394857548552129409 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7860910233065976128, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
+  m_PrefabInstance: {fileID: 9100675032771312321}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6911203720180619813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2424502935563067620, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
