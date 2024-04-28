@@ -8,18 +8,11 @@ using UnityEngine;
 public class EnemyCarController : MonoBehaviour
 {
     [HideInInspector] public int currentSnap;
-    [HideInInspector] public float OriginalDist;
     private LaneManager LM;
     private GameObject enemy;
-    public float detectionDistance, maxChaseDist, minChaseDist;
+    public float detectionDistance, maxChaseDist, minChaseDist, minZ, maxZ, targetZ, OriginalDistFromPlayer, moveStep, timeStep, currentZ;
     public Transform barrelSpawn;
     public GameObject[] ThingsToThrow;
-    public enum EnemyState
-    {
-        None, MovingLeft, MovingRight, MovingForward, MovingBackward, InCatchZone, HitObstacle
-    }
-    public EnemyState currentState;
-    public Coroutine currentCoroutine;
 
     public void GameReady()
     {
@@ -28,91 +21,9 @@ public class EnemyCarController : MonoBehaviour
         enemy = GameController.Instance.Enemy;
         StartCoroutine(AvoidObstacle());
         StartCoroutine(SpawnStuff());
-    }
-    public void GSM(EnemyState state)
-    {
-        if(currentCoroutine != null)
-        {
-            StopCoroutine(currentCoroutine);
-            currentCoroutine = null;
-        }
-        switch(state)
-        {
-            case EnemyState.None:
-                currentState = EnemyState.None;
-                break;
-            case EnemyState.MovingLeft:  
-                currentState = EnemyState.MovingLeft;
-                currentCoroutine = StartCoroutine(MovingLeft());
-                break;
-            case EnemyState.MovingRight:
-                currentState = EnemyState.MovingRight;
-                currentCoroutine = StartCoroutine(MovingRight());
-                break;
-            case EnemyState.MovingForward:
-                currentState = EnemyState.MovingForward;
-                currentCoroutine = StartCoroutine(MovingForward());
-                break;
-            case EnemyState.MovingBackward:
-                currentState = EnemyState.MovingBackward;
-                currentCoroutine = StartCoroutine(MovingBackward());
-                break;
-            case EnemyState.InCatchZone:
-                StopCoroutine(currentCoroutine);
-                currentState = EnemyState.InCatchZone;
-                break;
-        }
-    }
-    private IEnumerator MovingLeft()
-    {
-        print(currentState.ToString());
-        while (currentState == EnemyState.MovingLeft)
-        {
-            GSM(EnemyState.MovingRight);
-            yield return null;
-        }
-    }
-    private IEnumerator MovingRight()
-    {
-       
-        while (currentState == EnemyState.MovingRight)
-        {
-
-            GSM(EnemyState.MovingForward);
-
-            yield return null;
-        }
-
-    }
-    private IEnumerator MovingForward()
-    {
-        while (currentState == EnemyState.MovingForward)
-        {
-            GSM(EnemyState.MovingBackward);
-            yield return null;
-        }
-    }
-    private IEnumerator MovingBackward()
-    {
-        while (currentState == EnemyState.MovingBackward)
-        {
-            GSM(EnemyState.MovingLeft);
-            yield return null;
-        }
-    }
-    private IEnumerator InCatchZone()
-    {
-        while (currentState == EnemyState.InCatchZone)
-        {
-            yield return null;
-        }
-    }
-    private IEnumerator HitObstacle()
-    {
-        while (currentState == EnemyState.HitObstacle)
-        {
-            yield return null;
-        }
+        StartCoroutine(ChangeDistanceOverTime());
+        minZ = minChaseDist - OriginalDistFromPlayer;
+        maxZ = maxChaseDist + OriginalDistFromPlayer;
     }
 
     private IEnumerator SpawnStuff()
@@ -148,13 +59,12 @@ public class EnemyCarController : MonoBehaviour
                         {
                             MoveRight();
                         }
-                    }    
+                    }
                 }
             }
             yield return new WaitForFixedUpdate();
         }    
     }
-
     public void MoveLeft()
     {
         if (LM.CanMoveLeft())
@@ -171,33 +81,58 @@ public class EnemyCarController : MonoBehaviour
             enemy.transform.position = new Vector3(LM.EnemySnaps[currentSnap].transform.position.x, LM.EnemySnaps[currentSnap].transform.position.y, enemy.transform.position.z);
         }
     }
-    public void StartChangeDistanceCoroutine(float distance)
+    public void UpdateDistance(float distance)
     {
         // a check to make sure the lead car doesnt get too close/far
-        float theDistance = enemy.transform.position.z + distance;
-        float min = minChaseDist - OriginalDist;
-        float max = maxChaseDist + OriginalDist;    
-        if (theDistance > min && theDistance < max)
-        {
-            StartCoroutine(ChangeDistanceOverTime(distance));
-        }
+        targetZ += distance;
+        targetZ = Mathf.Clamp(targetZ, minZ, maxZ);
+        //minZ = minChaseDist - OriginalDistFromPlayer;
+        //maxZ = maxChaseDist + OriginalDistFromPlayer;    
+        //if (placeToGo > min && placeToGo < max)
+        //{
+        //    StartCoroutine(ChangeDistanceOverTime(distance));
+        //}
     }
-    public IEnumerator ChangeDistanceOverTime(float distance)
+    //public IEnumerator ChangeDistanceOverTime(float distance)
+    //{
+    //    float duration = 1f;
+    //    float elapsedTime = 0.0f;
+    //    Vector3 initialPosition = enemy.transform.position;
+    //    Vector3 targetPosition = new Vector3(initialPosition.x, initialPosition.y, initialPosition.z - distance);
+    //    float t = 0;
+    //    while (t < 1)
+    //    {
+    //        t = elapsedTime / duration;
+    //        enemy.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
+    //        elapsedTime += Time.deltaTime;
+    //        yield return null; // Wait for the next frame
+    //    }
+    //    enemy.transform.position = targetPosition;
+    //}
+    public IEnumerator ChangeDistanceOverTime()
     {
-        float duration = 1f;
-        float elapsedTime = 0.0f;
-        Vector3 initialPosition = enemy.transform.position;
-        Vector3 targetPosition = new Vector3(initialPosition.x, initialPosition.y, initialPosition.z - distance);
-        float t = 0;
-        while (t < 1)
+        if (moveStep == 0)
         {
-            t = elapsedTime / duration;
-            enemy.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
-            elapsedTime += Time.deltaTime;
-            yield return null; // Wait for the next frame
+            moveStep = 0.05f;
         }
-        enemy.transform.position = targetPosition;
+        while(true)
+        {
+            //print("ETC.z: " + enemy.transform.position.z + " targetZ: " + targetZ);
+            currentZ = enemy.transform.position.z;
+            if (targetZ > enemy.transform.position.z)
+            {
+                //print("HERE1");
+                enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z + moveStep);
+            }
+            else if (targetZ < enemy.transform.position.z)
+            {
+                //print("HERE2");
+                enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.transform.position.z - moveStep);
+            }
+            yield return new WaitForSeconds(timeStep);
+        }
     }
+
     public void SpawnBarrel(GameObject barrel)
     {
         if(barrel != null)
