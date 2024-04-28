@@ -34,6 +34,7 @@ public class AnyObject : MonoBehaviour
                 }
             }
         }
+        //The enums are purely for Game Dev's ease of access, esp so they dont put in an illegal number
         switch(multLevelsToReduce)
         {
             case MultLevelsToReduce.None:
@@ -55,9 +56,9 @@ public class AnyObject : MonoBehaviour
     }
     private void Update()
     {
-        if (isBarrel)
+        if (isBarrel) 
         {
-            var step = (GameController.Instance.currentBackgroundSpeed/2) * Time.deltaTime;
+            var step = (GameController.Instance.currentBGSpeed/2) * Time.deltaTime;
             transform.position = Vector3.MoveTowards(rb.position, moveTowards.transform.position, step);
         } 
     }
@@ -78,11 +79,11 @@ public class AnyObject : MonoBehaviour
                 enemy.UpdateDistance(EnemyCarDistanceChange);
 
                 //Affect the background speed 
-                GC.ChangeBackgroundSpeed(BackgroundSpeedChange);
+                GC.ChangeBackgroundSpeed(-GC.speedIncreasePerBGUp[GC.currentBackgroundSpeedIndex]); //reduce the speed by the current index's value
+                GC.currentBackgroundSpeedIndex = Mathf.Clamp(GC.currentBackgroundSpeedIndex - 1, 0, GC.timesToNextBGSpeedUps.Length - 1); //THEN reduce the index
 
                 //For the obstacle timer
                 GC.currentTime = 0;
-                GC.currentBackgroundSpeedIndex = Mathf.Clamp(GC.currentBackgroundSpeedIndex-1, 0, GC.timesToNextBGSpeedUps.Length-1);
 
                 //For the multiplier
                 ScoreManager.Instance.DecreaseMultiplier(MultiplierLevelsToReduce);
