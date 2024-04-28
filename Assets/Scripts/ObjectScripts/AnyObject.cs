@@ -43,8 +43,10 @@ public class AnyObject : MonoBehaviour
                 MultiplierLevelsToReduce = 1;
                 break;
             case MultLevelsToReduce.Half:
+                MultiplierLevelsToReduce = ScoreManager.Instance.multiplierAmounts.Length/2;
                 break;
             case MultLevelsToReduce.All:
+                MultiplierLevelsToReduce = ScoreManager.Instance.totalTimeToNextMultLevel.Length-1;
                 break;
         }
     }
@@ -81,6 +83,7 @@ public class AnyObject : MonoBehaviour
 
                 //For the multiplier
                 ScoreManager.Instance.DecreaseMultiplier();
+                ScoreManager.Instance.currentMultIndex -= MultiplierLevelsToReduce;
             }
             DestroyThis();
         }

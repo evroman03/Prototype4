@@ -22,46 +22,66 @@ public class ScoreManager : MonoBehaviour
     #endregion
     public TMP_Text scoreText; // Reference to the TextMeshPro Text component where the score will be displayed
     public TMP_Text multiplierText; //Reference to the TextMeshPro Text component where the multiplier will be displayed
-    public int scoreStep = 5; // Amount that the score will increment/decrement
-    public float step = 0.01f; // How fast the score will increment/decrement
+    public int UIScoreStepAmount = 5; // Amount that the score will increment/decrement
+    public float UIScoreStepTime = 0.01f; // How fast the score will increment/decrement
     [SerializeField] int targetscore = 0; // Computers score (total score)
     [SerializeField] int currentscore = 0;// The current score (coroutines score)
-    [SerializeField] int multiplier = 1; // The current multiplier
-    [SerializeField] float timeSinceHit;
-    [SerializeField] int levelsToRemove = 1;
+    [SerializeField] float currentMultiplier = 1; // The current multiplier
+    //[SerializeField] float timeSinceHit;
+    [SerializeField] int multLevelsToRemoveOnHit = 1;
+    public int[] totalTimeToNextMultLevel;
+    public float[] multiplierAmounts;
+    public float currentScoreTime;
+    public int currentMultIndex;
 
     private void Start()
     {
         UpdateScoreText();
         UpdateMultiplierText();
         StartCoroutine(StartOdometer());
+        StartCoroutine(RunMultiplier());
     }
-    private void Update()
+    private IEnumerator RunMultiplier()
     {
-        timeSinceHit += Time.deltaTime;
-        if(timeSinceHit >= 15 && timeSinceHit < 30)
+        while(true)
         {
-            multiplier = 2;
-            UpdateMultiplierText();
+            currentScoreTime += Time.deltaTime;
+            if(currentMultIndex < totalTimeToNextMultLevel.Length && currentScoreTime >= totalTimeToNextMultLevel[currentMultIndex])
+            {
+                currentMultiplier = multiplierAmounts[currentMultIndex];
+                currentMultIndex++;
+                UpdateMultiplierText();
+
+            }
+            yield return null;
+        }
+    }
+    //private void Update()
+    //{
+    //    timeSinceHit += Time.deltaTime;
+    //    if(timeSinceHit >= 15 && timeSinceHit < 30)
+    //    {
+    //        multiplier = 2;
+    //        UpdateMultiplierText();
             
-        }
-        else if(timeSinceHit >= 30 && timeSinceHit < 45)
-        {
-            multiplier = 3;
-            UpdateMultiplierText();
+    //    }
+    //    else if(timeSinceHit >= 30 && timeSinceHit < 45)
+    //    {
+    //        multiplier = 3;
+    //        UpdateMultiplierText();
 
-        }
-        else if(timeSinceHit >= 45 && timeSinceHit < 60)
-        {
-            multiplier = 4;
-            UpdateMultiplierText();
+    //    }
+    //    else if(timeSinceHit >= 45 && timeSinceHit < 60)
+    //    {
+    //        multiplier = 4;
+    //        UpdateMultiplierText();
 
-        }
-    }
+    //    }
+    //}
     // Function to add points to the score
-    public void ChangeScore(int points)
+    public void ChangeScore(float points)
     {
-        targetscore += points * multiplier;
+        targetscore += (int)(points * currentMultiplier);
         if(targetscore < 0)
         {
             targetscore = 0;
@@ -71,12 +91,12 @@ public class ScoreManager : MonoBehaviour
 
     public void DecreaseMultiplier()
     {
-        timeSinceHit = 0;
+        currentScoreTime = 0;
 
-        multiplier += -levelsToRemove;
-        if (multiplier <= 0)
+        currentMultiplier += -multLevelsToRemoveOnHit;
+        if (currentMultiplier <= 0)
         {
-            multiplier = 1;
+            currentMultiplier = 1;
         }
         UpdateMultiplierText();
     }    
@@ -94,7 +114,7 @@ public class ScoreManager : MonoBehaviour
     {
         if(multiplierText != null)
         {
-            multiplierText.text = "x" + multiplier.ToString();
+            multiplierText.text = "x" + currentMultiplier.ToString();
         }
     }
 
@@ -105,13 +125,11 @@ public class ScoreManager : MonoBehaviour
     }
     IEnumerator StartOdometer()
     {
-        print("HEREFIRST");
         while(true)
         {
             if (currentscore < targetscore)
             {
-                print("HERE");
-                currentscore += scoreStep;
+                currentscore += UIScoreStepAmount;
                 if (currentscore > targetscore)
                 {
                     currentscore = targetscore;
@@ -120,15 +138,14 @@ public class ScoreManager : MonoBehaviour
             }
             if (currentscore > targetscore)
             {
-                print("HERE2");
-                currentscore -= scoreStep;
+                currentscore -= UIScoreStepAmount;
                 if (currentscore < targetscore)
                 {
                     currentscore = targetscore;
                 }
                 UpdateScoreText();
             }
-            yield return new WaitForSeconds(step);
+            yield return new WaitForSeconds(UIScoreStepTime);
         }
     }
 }
