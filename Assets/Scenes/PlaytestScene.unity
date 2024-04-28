@@ -135,6 +135,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: BGSpeedPerStep
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: speedIncreasePerBGUp.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextBGSpeedUps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: speedIncreasePerBGUp.Array.data[3]
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextBGSpeedUps.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextBGSpeedUps.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextBGSpeedUps.Array.data[2]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4112756637819734077, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
+      propertyPath: timesToNextBGSpeedUps.Array.data[3]
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6844593069411138662, guid: 1e79e6468ac2a5248945387cc6f8f531, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

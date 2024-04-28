@@ -21,19 +21,20 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
-    public float MaxSpeed = 50, MinSpeed = 30f, targetBackgroundSpeed, currentBackgroundSpeed, currentTime, backgroundSpeedPerStep;
+    [HideInInspector] public int currentBackgroundSpeedIndex = 0;
+    [HideInInspector] public float targetBGSpeed;
+    public float MaxSpeed = 50, MinSpeed = 30f, currentTime, BGSpeedPerStep, currentBGSpeed;
+
+    //These should probably just be removed and speed should constantly increase but we are lacking time
     public float[] timesToNextBGSpeedUps;
     public int[] speedIncreasePerBGUp;
-    [HideInInspector] public int currentBackgroundSpeedIndex = 0;
+
     public GameObject Player, Enemy;
-    private EnemyCarController eC;
-    public RepeatingBackground[] Backgrounds;
-
-
     public GameObject MoveTowards, BackgroundSpawn;
 
+    public RepeatingBackground[] Backgrounds;
 
-
+    private EnemyCarController eC;
     private RepeatingBackground temp;
 
 
@@ -62,8 +63,8 @@ public class GameController : MonoBehaviour
 
         StartCoroutine(ObstacleTimer());
         StartCoroutine(SpeedChanger());
-        currentBackgroundSpeed = MinSpeed;
-        targetBackgroundSpeed = MinSpeed;
+        currentBGSpeed = MinSpeed;
+        targetBGSpeed = MinSpeed;
     }
   
     public IEnumerator ObstacleTimer()
@@ -87,19 +88,19 @@ public class GameController : MonoBehaviour
     }
     public void ChangeBackgroundSpeed(int speed)
     {
-        targetBackgroundSpeed = Mathf.Clamp(targetBackgroundSpeed + speed, MinSpeed, MaxSpeed);
+        targetBGSpeed = Mathf.Clamp(targetBGSpeed + speed, MinSpeed, MaxSpeed);
     }
     public IEnumerator SpeedChanger()
     {
         while(true)
         {
-            if(targetBackgroundSpeed > currentBackgroundSpeed)
+            if(targetBGSpeed > currentBGSpeed)
             {
-                currentBackgroundSpeed = Mathf.Clamp(currentBackgroundSpeed + backgroundSpeedPerStep, MinSpeed, MaxSpeed);
+                currentBGSpeed = Mathf.Clamp(currentBGSpeed + BGSpeedPerStep, MinSpeed, MaxSpeed);
             }
-            else if (targetBackgroundSpeed < currentBackgroundSpeed)
+            else if (targetBGSpeed < currentBGSpeed)
             {
-                currentBackgroundSpeed = Mathf.Clamp(currentBackgroundSpeed - backgroundSpeedPerStep, MinSpeed, MaxSpeed);
+                currentBGSpeed = Mathf.Clamp(currentBGSpeed - BGSpeedPerStep, MinSpeed, MaxSpeed);
             }
             yield return new WaitForSeconds(0.25f);
         }
@@ -117,9 +118,5 @@ public class GameController : MonoBehaviour
             var obj = Instantiate(Backgrounds[UnityEngine.Random.Range(0, Backgrounds.Length)], temp.spawnTo.position, Quaternion.identity);
             temp = obj;
         }
-    }
-    public void Update()
-    {
-        
     }
 }
