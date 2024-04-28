@@ -72,14 +72,12 @@ public class PlayerController : MonoBehaviour
     {
         currentSnap -= 1;
         player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
-        carAnimator.SetTrigger("FinishedTurn");
         canTurn = true;
     }
     public void AnimDoneRight()
     {
         currentSnap += 1;
         player.transform.position = LM.PlayerSnaps[currentSnap].transform.position;
-        carAnimator.SetTrigger("FinishedTurn");
         canTurn = true;
     }
 

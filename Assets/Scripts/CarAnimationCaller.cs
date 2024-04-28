@@ -33,8 +33,8 @@ public class CarAnimationCaller : MonoBehaviour
     }
     public void ResetAll()
     {
-        transform.rotation = Quaternion.identity;
-        transform.position = new Vector3(0, 0, 0);
-        print("RESETALL");
+        //transform.rotation = Quaternion.identity;
+        //transform.position = new Vector3(0, 0, 0);
+        //print("RESETALL");
     }
 }
