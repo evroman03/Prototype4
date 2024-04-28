@@ -643,8 +643,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreChangeFactor: -100
-  EnemyCarDistanceChange: -2
+  EnemyCarDistanceChange: 2
   BackgroundSpeedChange: 0
   isBarrel: 0
   enemyCar: {fileID: 0}
-  multLevelsToReduce: 0
+  multLevelsToReduce: 1

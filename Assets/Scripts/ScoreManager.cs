@@ -24,15 +24,11 @@ public class ScoreManager : MonoBehaviour
     public TMP_Text multiplierText; //Reference to the TextMeshPro Text component where the multiplier will be displayed
     public int UIScoreStepAmount = 5; // Amount that the score will increment/decrement
     public float UIScoreStepTime = 0.01f; // How fast the score will increment/decrement
-    [SerializeField] int targetscore = 0; // Computers score (total score)
-    [SerializeField] int currentscore = 0;// The current score (coroutines score)
-    [SerializeField] float currentMultiplier = 1; // The current multiplier
-    //[SerializeField] float timeSinceHit;
-    [SerializeField] int multLevelsToRemoveOnHit = 1;
     public int[] totalTimeToNextMultLevel;
     public float[] multiplierAmounts;
-    public float currentScoreTime;
-    public int currentMultIndex;
+    [HideInInspector] public int targetScore, currentScore, currentMultIndex;
+    [HideInInspector] public float currentMultTime, currentMultiplier;
+
 
     private void Start()
     {
@@ -45,8 +41,8 @@ public class ScoreManager : MonoBehaviour
     {
         while(true)
         {
-            currentScoreTime += Time.deltaTime;
-            if(currentMultIndex < totalTimeToNextMultLevel.Length && currentScoreTime >= totalTimeToNextMultLevel[currentMultIndex])
+            currentMultTime += Time.deltaTime;
+            if(currentMultIndex < totalTimeToNextMultLevel.Length && currentMultTime >= totalTimeToNextMultLevel[currentMultIndex])
             {
                 currentMultiplier = multiplierAmounts[currentMultIndex];
                 currentMultIndex++;
@@ -81,23 +77,18 @@ public class ScoreManager : MonoBehaviour
     // Function to add points to the score
     public void ChangeScore(float points)
     {
-        targetscore += (int)(points * currentMultiplier);
-        if(targetscore < 0)
+        targetScore += (int)(points * currentMultiplier);
+        if(targetScore < 0)
         {
-            targetscore = 0;
+            targetScore = 0;
         }
         SaveScore();
     }
 
-    public void DecreaseMultiplier()
+    public void DecreaseMultiplier(int levelsToRemove)
     {
-        currentScoreTime = 0;
-
-        currentMultiplier += -multLevelsToRemoveOnHit;
-        if (currentMultiplier <= 0)
-        {
-            currentMultiplier = 1;
-        }
+        currentMultTime = 0;
+        currentMultIndex = Mathf.Clamp(currentMultIndex - levelsToRemove, 0, multiplierAmounts.Length);
         UpdateMultiplierText();
     }    
 
@@ -106,7 +97,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + currentscore.ToString();
+            scoreText.text = "Score: " + currentScore.ToString();
         }
     }
 
@@ -114,34 +105,34 @@ public class ScoreManager : MonoBehaviour
     {
         if(multiplierText != null)
         {
-            multiplierText.text = "x" + currentMultiplier.ToString();
+            multiplierText.text = "x" + multiplierAmounts[currentMultIndex].ToString();
         }
     }
 
     private void SaveScore()
     {
-        PlayerPrefs.SetInt("Score", currentscore);
+        PlayerPrefs.SetInt("Score", currentScore);
         PlayerPrefs.Save();
     }
     IEnumerator StartOdometer()
     {
         while(true)
         {
-            if (currentscore < targetscore)
+            if (currentScore < targetScore)
             {
-                currentscore += UIScoreStepAmount;
-                if (currentscore > targetscore)
+                currentScore += UIScoreStepAmount;
+                if (currentScore > targetScore)
                 {
-                    currentscore = targetscore;
+                    currentScore = targetScore;
                 }
                 UpdateScoreText();
             }
-            if (currentscore > targetscore)
+            if (currentScore > targetScore)
             {
-                currentscore -= UIScoreStepAmount;
-                if (currentscore < targetscore)
+                currentScore -= UIScoreStepAmount;
+                if (currentScore < targetScore)
                 {
-                    currentscore = targetscore;
+                    currentScore = targetScore;
                 }
                 UpdateScoreText();
             }

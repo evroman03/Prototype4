@@ -595,11 +595,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreChangeFactor: -100
-  EnemyCarDistanceChange: -2
+  EnemyCarDistanceChange: 2
   BackgroundSpeedChange: 0
   isBarrel: 0
   enemyCar: {fileID: 0}
-  multLevelsToReduce: 0
+  multLevelsToReduce: 1
 --- !u!54 &1687688743810604356
 Rigidbody:
   m_ObjectHideFlags: 0

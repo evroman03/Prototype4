@@ -16,7 +16,7 @@ public class AnyObject : MonoBehaviour
     public EnemyCarController enemyCar;
     public enum MultLevelsToReduce
     {
-        None, One, Half, All, 
+        None, One, Two, Half, All, 
     }
     public MultLevelsToReduce multLevelsToReduce;
 
@@ -42,11 +42,14 @@ public class AnyObject : MonoBehaviour
             case MultLevelsToReduce.One:
                 MultiplierLevelsToReduce = 1;
                 break;
+            case MultLevelsToReduce.Two:
+                MultiplierLevelsToReduce = 2;
+                break;
             case MultLevelsToReduce.Half:
                 MultiplierLevelsToReduce = ScoreManager.Instance.multiplierAmounts.Length/2;
                 break;
             case MultLevelsToReduce.All:
-                MultiplierLevelsToReduce = ScoreManager.Instance.totalTimeToNextMultLevel.Length-ScoreManager.Instance.currentMultIndex;
+                MultiplierLevelsToReduce = ScoreManager.Instance.multiplierAmounts.Length-ScoreManager.Instance.currentMultIndex;
                 break;
         }
     }
@@ -67,7 +70,7 @@ public class AnyObject : MonoBehaviour
             {
                 ScoreManager.Instance.ChangeScore(ScoreChangeFactor);
             } 
-            if(EnemyCarDistanceChange < 0 )
+            if(EnemyCarDistanceChange > 0 )
             {
                 var GC = GameController.Instance;
                 //Get the enemy and move him away from the player
@@ -82,8 +85,8 @@ public class AnyObject : MonoBehaviour
                 GC.currentBackgroundSpeedIndex = Mathf.Clamp(GC.currentBackgroundSpeedIndex-1, 0, GC.timesToNextBGSpeedUps.Length-1);
 
                 //For the multiplier
-                ScoreManager.Instance.DecreaseMultiplier();
-                ScoreManager.Instance.currentMultIndex -= MultiplierLevelsToReduce;
+                ScoreManager.Instance.DecreaseMultiplier(MultiplierLevelsToReduce);
+                //ScoreManager.Instance.currentMultIndex -= MultiplierLevelsToReduce;
             }
             DestroyThis();
         }
