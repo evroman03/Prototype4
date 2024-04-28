@@ -81,12 +81,17 @@ MonoBehaviour:
   currentSnap: 0
   detectionDistance: 7
   maxChaseDist: 30
-  minChaseDist: 10
+  minChaseDist: 25
+  minZ: 0
+  maxZ: 0
+  targetZ: 0
+  OriginalDistFromPlayer: 0
+  moveStep: 0.25
+  timeStep: 0.01
   barrelSpawn: {fileID: 5510755017684459041}
   ThingsToThrow:
   - {fileID: 2491192500025300348, guid: ec7569d5617e66a42855a42aca24c85c, type: 3}
   - {fileID: 8619130620706106687, guid: 43a66beeba59a004d9ec23b497576509, type: 3}
-  currentState: 0
 --- !u!65 &8587077676080698416
 BoxCollider:
   m_ObjectHideFlags: 0

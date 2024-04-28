@@ -46,7 +46,7 @@ public class AnyObject : MonoBehaviour
                 MultiplierLevelsToReduce = ScoreManager.Instance.multiplierAmounts.Length/2;
                 break;
             case MultLevelsToReduce.All:
-                MultiplierLevelsToReduce = ScoreManager.Instance.totalTimeToNextMultLevel.Length-1;
+                MultiplierLevelsToReduce = ScoreManager.Instance.totalTimeToNextMultLevel.Length-ScoreManager.Instance.currentMultIndex;
                 break;
         }
     }
@@ -72,7 +72,7 @@ public class AnyObject : MonoBehaviour
                 var GC = GameController.Instance;
                 //Get the enemy and move him away from the player
                 var enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponentInChildren<EnemyCarController>();
-                enemy.StartChangeDistanceCoroutine(EnemyCarDistanceChange);
+                enemy.UpdateDistance(EnemyCarDistanceChange);
 
                 //Affect the background speed 
                 GC.ChangeBackgroundSpeed(BackgroundSpeedChange);

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2424502935563067620}
   - component: {fileID: 7860910233065976128}
   - component: {fileID: 8793615787013951003}
+  - component: {fileID: 7445937971678733146}
   m_Layer: 0
   m_Name: CarPivot
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,7 +68,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51b9f7fea673dc45b2ee4e0ad98f7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Car: {fileID: 0}
   playerController: {fileID: 0}
+--- !u!65 &7445937971678733146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987152851174152741}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5342896905947560576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,24 +139,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3509490678415435802, guid: bc15087e701f05d42935734ce96c702c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3509490678415435802, guid: bc15087e701f05d42935734ce96c702c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3509490678415435802, guid: bc15087e701f05d42935734ce96c702c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4218225642844653938, guid: bc15087e701f05d42935734ce96c702c, type: 3}
       propertyPath: m_Name
       value: bmw
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3298247484031519748, guid: bc15087e701f05d42935734ce96c702c, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
