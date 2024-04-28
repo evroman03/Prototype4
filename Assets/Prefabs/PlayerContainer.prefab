@@ -132,14 +132,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarPivot
       objectReference: {fileID: 0}
-    - target: {fileID: 7860910233065976128, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7860910233065976128, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8793615787013951003, guid: 18cc847382d875849b3d3c8dfa89b037, type: 3}
       propertyPath: playerController
       value: 
