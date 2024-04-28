@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class CarAnimationCaller : MonoBehaviour
 {
-    public GameObject Car;
     public PlayerController playerController;
     Quaternion origRotation;
     // Start is called before the first frame update
     void Start()
     {
-        origRotation = transform.rotation;
+        origRotation = Quaternion.identity;
     }
 
     // Update is called once per frame
@@ -21,14 +20,21 @@ public class CarAnimationCaller : MonoBehaviour
 
     public void TurnedLeft()
     {
+        ResetAll();
         playerController.AnimDoneLeft();
-        transform.rotation = origRotation;
-        Debug.Log(origRotation);
+
     }
 
     public void TurnedRight()
     {
+        ResetAll();
         playerController.AnimDoneRight();
-        transform.rotation = origRotation;
+
+    }
+    public void ResetAll()
+    {
+        transform.rotation = Quaternion.identity;
+        transform.position = new Vector3(0, 0, 0);
+        print("RESETALL");
     }
 }

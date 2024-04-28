@@ -53,11 +53,13 @@ public class GameController : MonoBehaviour
         }
         LaneManager.Instance.GameReady();
         PlayerController.Instance.GameReady();
-        eC = Enemy.GetComponent<EnemyCarController>();
-        eC.GameReady();
+       
         Player.transform.position = LaneManager.Instance.PlayerSnaps[LaneManager.Instance.PlayerCenterSnap].transform.position;
         Enemy.transform.position = LaneManager.Instance.EnemySnaps[LaneManager.Instance.EnemyCenterSnap].transform.position;
-        eC.OriginalDist = Enemy.transform.position.z;
+        eC = Enemy.GetComponent<EnemyCarController>();
+        eC.OriginalDistFromPlayer = Enemy.transform.position.z;
+        eC.GameReady();
+
         StartCoroutine(ObstacleTimer());
         StartCoroutine(SpeedChanger());
         currentBackgroundSpeed = MinSpeed;
@@ -75,10 +77,10 @@ public class GameController : MonoBehaviour
                 ChangeBackgroundSpeed(speedIncreasePerBGUp[currentBackgroundSpeedIndex]);
                 currentBackgroundSpeedIndex++;
             }
-            //If the player isnt hitting an obstacle, reduce their distance
+            //If the player isnt hitting an obstacle, reduce their distance to the enemy
             if(((int)currentTime) % 2 == 0)
             {
-                eC.StartChangeDistanceCoroutine(2);
+                //eC.StartChangeDistanceCoroutine(2);
             }
             yield return null;
         }
@@ -86,7 +88,6 @@ public class GameController : MonoBehaviour
     public void ChangeBackgroundSpeed(int speed)
     {
         targetBackgroundSpeed = Mathf.Clamp(targetBackgroundSpeed + speed, MinSpeed, MaxSpeed);
-        print(targetBackgroundSpeed + " speed: " + speed);
     }
     public IEnumerator SpeedChanger()
     {
