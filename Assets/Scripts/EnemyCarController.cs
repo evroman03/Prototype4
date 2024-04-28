@@ -10,7 +10,8 @@ public class EnemyCarController : MonoBehaviour
     [HideInInspector] public int currentSnap;
     private LaneManager LM;
     private GameObject enemy;
-    public float detectionDistance, maxChaseDist, minChaseDist, minZ, maxZ, targetZ, OriginalDistFromPlayer, moveStep, timeStep, currentZ;
+    private float minZ, maxZ, targetZ;
+    public float detectionDistance, DistMaxToOrigin, DistMinToOrigin, OriginDistFromPlayer, moveStep, timeStep;
     public Transform barrelSpawn;
     public GameObject[] ThingsToThrow;
 
@@ -22,8 +23,9 @@ public class EnemyCarController : MonoBehaviour
         StartCoroutine(AvoidObstacle());
         StartCoroutine(SpawnStuff());
         StartCoroutine(ChangeDistanceOverTime());
-        minZ = minChaseDist - OriginalDistFromPlayer;
-        maxZ = maxChaseDist + OriginalDistFromPlayer;
+        targetZ = OriginDistFromPlayer;
+        minZ = targetZ - DistMinToOrigin;
+        maxZ = targetZ + DistMaxToOrigin;
     }
 
     private IEnumerator SpawnStuff()
@@ -86,6 +88,7 @@ public class EnemyCarController : MonoBehaviour
         // a check to make sure the lead car doesnt get too close/far
         targetZ += distance;
         targetZ = Mathf.Clamp(targetZ, minZ, maxZ);
+        print("target: " + targetZ + " min: " + minZ + " max: " + maxZ);
         //minZ = minChaseDist - OriginalDistFromPlayer;
         //maxZ = maxChaseDist + OriginalDistFromPlayer;    
         //if (placeToGo > min && placeToGo < max)
@@ -117,8 +120,6 @@ public class EnemyCarController : MonoBehaviour
         }
         while(true)
         {
-            //print("ETC.z: " + enemy.transform.position.z + " targetZ: " + targetZ);
-            currentZ = enemy.transform.position.z;
             if (targetZ > enemy.transform.position.z)
             {
                 //print("HERE1");

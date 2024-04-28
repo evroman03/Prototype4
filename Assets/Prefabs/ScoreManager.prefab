@@ -598,12 +598,12 @@ MonoBehaviour:
   currentscore: 0
   currentMultiplier: 1
   multLevelsToRemoveOnHit: 1
-  totalTimeToNextMultLevel: 010000000300000006000000090000000a000000
+  totalTimeToNextMultLevel: 0100000002000000030000000400000005000000
   multiplierAmounts:
   - 1
   - 2
   - 3.5
   - 4.5
   - 10
-  currentScoreTime: 0
+  currentMultTime: 0
   currentMultIndex: 0

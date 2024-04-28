@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour
         Player.transform.position = LaneManager.Instance.PlayerSnaps[LaneManager.Instance.PlayerCenterSnap].transform.position;
         Enemy.transform.position = LaneManager.Instance.EnemySnaps[LaneManager.Instance.EnemyCenterSnap].transform.position;
         eC = Enemy.GetComponent<EnemyCarController>();
-        eC.OriginalDistFromPlayer = Enemy.transform.position.z;
+        Enemy.transform.position = new Vector3(Enemy.transform.position.x, Enemy.transform.position.y, eC.OriginDistFromPlayer);
         eC.GameReady();
 
         StartCoroutine(ObstacleTimer());
