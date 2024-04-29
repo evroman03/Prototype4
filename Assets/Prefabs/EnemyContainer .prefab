@@ -1085,9 +1085,9 @@ MonoBehaviour:
   OriginDistFromPlayer: 20
   moveStep: 0.125
   timeStep: 0.05
-  catchDistPlayerToEnemy: 15
+  catchDistPlayerToEnemy: 12
   currentCatchTime: 0
-  catchTimeToWin: 15
+  catchTimeToWin: 20
   catchTimeLoss: 0
   barrelSpawn: {fileID: 5510755017684459041}
   ThingsToThrow:

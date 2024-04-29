@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &103357748 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4080392993231828186, guid: c91bf8fc832e86640b482f2e4a83b1ed, type: 3}
+  m_PrefabInstance: {fileID: 1557492883}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &106355196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1281,6 +1292,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: catchingText
+      value: 
+      objectReference: {fileID: 103357748}
+    - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: multiplierAmounts.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: multiplierAmounts.Array.data[3]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8764763284894815403, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
       propertyPath: m_Name
       value: ScoreManager
@@ -1570,6 +1593,7 @@ SceneRoots:
   - {fileID: 1600278314}
   - {fileID: 106355196}
   - {fileID: 1108839247}
+  - {fileID: 507904415}
   - {fileID: 262103588}
   - {fileID: 839188241}
   - {fileID: 2090327335}
@@ -1580,6 +1604,5 @@ SceneRoots:
   - {fileID: 1207505519}
   - {fileID: 2134812315}
   - {fileID: 684853407}
-  - {fileID: 507904415}
   - {fileID: 529174648}
   - {fileID: 1600964542}
