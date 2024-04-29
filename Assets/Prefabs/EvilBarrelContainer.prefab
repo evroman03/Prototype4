@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4307f220e5b6e0a408ffe164fc35712f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreChangeFactor: -500
+  ScoreChangeFactor: -100
   EnemyCarDistanceChange: 5
   BackgroundSpeedChange: 0
   isBarrel: 1
