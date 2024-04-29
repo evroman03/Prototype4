@@ -36,7 +36,14 @@ public class Timer : MonoBehaviour
                 SoundManager.Instance.ChaseCompleted();
             }
         }
-
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     void DisplayTime(float timeToDisplay)
