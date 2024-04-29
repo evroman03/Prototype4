@@ -1,8 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyCarController : MonoBehaviour
@@ -11,7 +7,8 @@ public class EnemyCarController : MonoBehaviour
     private LaneManager LM;
     private GameObject enemy;
     private float minZ, maxZ, targetZ;
-    public float AIDetectionDistance, DistMaxToOrigin, DistMinToOrigin, OriginDistFromPlayer, moveStep, timeStep, catchDistPlayerToEnemy;
+    public float AIDetectionDistance, DistMaxToOrigin, DistMinToOrigin, OriginDistFromPlayer, moveStep, timeStep, catchDistPlayerToEnemy, currentCatchTime, catchTimeToWin;
+    [Tooltip("How much time you lose when not catching the enemy. Recommend 0-0.5f. Formula is timeLost = time.dT * catchTimeLoss")] public float catchTimeLoss;
     public Transform barrelSpawn;
     public GameObject[] ThingsToThrow;
 
@@ -117,7 +114,15 @@ public class EnemyCarController : MonoBehaviour
         {
             if(enemy.transform.position.z <= catchDistPlayerToEnemy)
             {
-
+                currentCatchTime += Time.deltaTime;
+                if(currentCatchTime > catchTimeToWin)
+                {
+                    print("YOU WIN");
+                }
+            }
+            else
+            {
+                currentCatchTime = Mathf.Clamp(currentCatchTime - Time.deltaTime * catchTimeLoss, 0, int.MaxValue);
             }
             yield return null;
         }
