@@ -1296,6 +1296,14 @@ PrefabInstance:
       propertyPath: catchingText
       value: 
       objectReference: {fileID: 103357748}
+    - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: multiplierAmounts.Array.data[2]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2404151924086453283, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
+      propertyPath: multiplierAmounts.Array.data[3]
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8764763284894815403, guid: fb09a2abf1ed61942a22dbe9637cf57e, type: 3}
       propertyPath: m_Name
       value: ScoreManager
