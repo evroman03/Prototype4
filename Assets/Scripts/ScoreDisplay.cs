@@ -6,18 +6,38 @@ using TMPro;
 public class ScoreDisplay : MonoBehaviour
 {
     public TMP_Text scoreText;
-    private int score;
+    public int currentScore;
+    public int targetScore;
+    public int UIScoreStepAmount = 5;
+    public float UIScoreStepTime = 0.01f;
+
     // Start is called before the first frame update
     private void Start()
     {
-        LoadScore();
+        StartCoroutine(StartOdometer());
     }
     private void LoadScore()
     {
-        score = PlayerPrefs.GetInt("Score", 0);
         if (scoreText != null)
         {
-            scoreText.text = "Score: " + score.ToString();
+            scoreText.text = "Score: " + currentScore.ToString();
+        }
+    }
+    IEnumerator StartOdometer()
+    {
+        targetScore = PlayerPrefs.GetInt("Score", 0);
+        while (true)
+        {
+            if (currentScore < targetScore)
+            {
+                currentScore += UIScoreStepAmount;
+                if (currentScore > targetScore)
+                {
+                    currentScore = targetScore;
+                }
+                LoadScore();
+            }
+            yield return new WaitForSeconds(UIScoreStepTime);
         }
     }
 }
