@@ -36,7 +36,7 @@ public class EnemyCarController : MonoBehaviour
         {
             //MonkeAnimator.SetTrigger("ThrowBarrel");
             SpawnBarrel();
-            yield return new WaitForSeconds(UnityEngine.Random.Range(0.25f, 3f));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.75f, 3f));
         }
     }
     private IEnumerator AvoidObstacle()
