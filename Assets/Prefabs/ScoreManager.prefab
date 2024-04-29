@@ -440,7 +440,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 4931424932171066017}
   multiplierText: {fileID: 2756822637509166420}
-  UIScoreStepAmount: 5
+  catchingText: {fileID: 0}
+  UIScoreStepAmount: 23
   UIScoreStepTime: 0.01
   totalTimeToNextMultLevel: 0100000002000000030000000400000005000000
   multiplierAmounts:

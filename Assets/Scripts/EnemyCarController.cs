@@ -21,7 +21,8 @@ public class EnemyCarController : MonoBehaviour
         targetZ = OriginDistFromPlayer;
         minZ = targetZ - DistMinToOrigin;
         maxZ = targetZ + DistMaxToOrigin;
-        catchDistPlayerToEnemy = Mathf.Abs(OriginDistFromPlayer - catchDistPlayerToEnemy);
+
+        currentCatchTime = catchTimeToWin;
 
         StartCoroutine(AvoidObstacle());
         StartCoroutine(SpawnStuff());
@@ -108,21 +109,34 @@ public class EnemyCarController : MonoBehaviour
             yield return new WaitForSeconds(timeStep);
         }
     }
+    /// <summary>
+    /// This should probably be in the score manager.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator CatchMechanic()
     {
         while(true)
         {
             if(enemy.transform.position.z <= catchDistPlayerToEnemy)
             {
-                currentCatchTime += Time.deltaTime;
-                if(currentCatchTime > catchTimeToWin)
+                if (!ScoreManager.Instance.catchingText.gameObject.activeSelf)
+                {
+                    ScoreManager.Instance.catchingText.gameObject.SetActive(true);
+                }         
+                currentCatchTime -= Time.deltaTime;
+                ScoreManager.Instance.UpdateCatchText(currentCatchTime);
+                if (currentCatchTime <= 0)
                 {
                     print("YOU WIN");
                 }
             }
             else
             {
-                currentCatchTime = Mathf.Clamp(currentCatchTime - Time.deltaTime * catchTimeLoss, 0, int.MaxValue);
+                if(ScoreManager.Instance.catchingText.gameObject.activeSelf)
+                {
+                    ScoreManager.Instance.catchingText.gameObject.SetActive(false);
+                }
+                currentCatchTime = Mathf.Clamp(currentCatchTime + Time.deltaTime * catchTimeLoss, 0, int.MaxValue);
             }
             yield return null;
         }

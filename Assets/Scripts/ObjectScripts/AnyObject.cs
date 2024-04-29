@@ -79,7 +79,11 @@ public class AnyObject : MonoBehaviour
                 enemy.UpdateDistance(EnemyCarDistanceChange);
 
                 //Affect the background speed 
-                GC.ChangeBackgroundSpeed(-GC.speedIncreasePerBGUp[GC.currentBackgroundSpeedIndex - 1]); //reduce the speed by the current index's value
+                if(GC.currentBackgroundSpeedIndex >0)
+                {
+                    GC.ChangeBackgroundSpeed(-GC.speedIncreasePerBGUp[GC.currentBackgroundSpeedIndex - 1]);
+                }
+                //reduce the speed by the current index's value
                 GC.currentBackgroundSpeedIndex = Mathf.Clamp(GC.currentBackgroundSpeedIndex - 1, 0, GC.timesToNextBGSpeedUps.Length - 1); //THEN reduce the index
 
                 //For the obstacle timer

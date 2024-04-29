@@ -22,6 +22,7 @@ public class ScoreManager : MonoBehaviour
     #endregion
     public TMP_Text scoreText; // Reference to the TextMeshPro Text component where the score will be displayed
     public TMP_Text multiplierText; //Reference to the TextMeshPro Text component where the multiplier will be displayed
+    public TMP_Text catchingText;
     public int UIScoreStepAmount = 5; // Amount that the score will increment/decrement
     public float UIScoreStepTime = 0.01f; // How fast the score will increment/decrement
     public int[] totalTimeToNextMultLevel;
@@ -100,7 +101,15 @@ public class ScoreManager : MonoBehaviour
             scoreText.text = "Score: " + currentScore.ToString();
         }
     }
-
+    public void UpdateCatchText(float timeToDisplay)
+    { 
+        if(catchingText != null)
+        {
+            float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+            float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+            catchingText.text = "Keep Going! \n" + string.Format("{0}:{1:00}", minutes, seconds);
+        }
+    }
     private void UpdateMultiplierText()
     {
         if(multiplierText != null)
