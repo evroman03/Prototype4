@@ -53,6 +53,8 @@ MonoBehaviour:
   currentTime: 0
   BGSpeedPerStep: 1
   currentBGSpeed: 0
+  enemyCloseStep: 5
+  obstacleDelay: 3
   timesToNextBGSpeedUps:
   - 1
   - 3
