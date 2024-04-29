@@ -1244,9 +1244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 929114007}
   currentScore: 0
-  targetScore: 26015
-  UIScoreStepAmount: 69
-  UIScoreStepTime: 0.05
+  targetScore: 0
+  UIScoreStepAmount: 123
+  UIScoreStepTime: 0.01
 --- !u!4 &1694488986
 Transform:
   m_ObjectHideFlags: 0
