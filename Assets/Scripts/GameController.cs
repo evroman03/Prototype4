@@ -23,7 +23,9 @@ public class GameController : MonoBehaviour
 
     [HideInInspector] public int currentBackgroundSpeedIndex = 0;
     [HideInInspector] public float targetBGSpeed;
-    public float MaxSpeed = 50, MinSpeed = 30f, currentTime, BGSpeedPerStep, currentBGSpeed;
+    public float MaxBGSpeed = 50, MinBGSpeed = 30f, currentTime, BGSpeedPerStep, currentBGSpeed;
+    [Tooltip("How often the player 'catches up' if not hitting an obstacle. (Formula is time % step ==0) Bigger number = more time between each step")] public int enemyCloseStep;
+    [Tooltip("Time that must be reached after hitting an obstacle for the player to 'catch up' to the enemy")] public float obstacleDelay;
 
     //These should probably just be removed and speed should constantly increase but we are lacking time
     public float[] timesToNextBGSpeedUps;
@@ -36,8 +38,6 @@ public class GameController : MonoBehaviour
 
     private EnemyCarController eC;
     private RepeatingBackground temp;
-
-
 
     public void Start()
     {
@@ -63,32 +63,31 @@ public class GameController : MonoBehaviour
 
         StartCoroutine(ObstacleTimer());
         StartCoroutine(SpeedChanger());
-        currentBGSpeed = MinSpeed;
-        targetBGSpeed = MinSpeed;
+        currentBGSpeed = MinBGSpeed;
+        targetBGSpeed = MinBGSpeed;
     }
-  
     public IEnumerator ObstacleTimer()
     {
         while (true)
         {
             currentTime += Time.deltaTime;
 
-            if (currentBackgroundSpeedIndex < timesToNextBGSpeedUps.Length && currentTime >= timesToNextBGSpeedUps[currentBackgroundSpeedIndex])
+            if (currentBackgroundSpeedIndex < timesToNextBGSpeedUps.Length-1 && currentTime >= timesToNextBGSpeedUps[currentBackgroundSpeedIndex])
             {
                 ChangeBackgroundSpeed(speedIncreasePerBGUp[currentBackgroundSpeedIndex]);
                 currentBackgroundSpeedIndex++;
             }
             //If the player isnt hitting an obstacle, reduce their distance to the enemy
-            if(((int)currentTime) % 2 == 0)
+            if (currentTime > obstacleDelay && ((int)currentTime) % enemyCloseStep == 0)
             {
-                //eC.StartChangeDistanceCoroutine(2);
+                eC.UpdateDistance(-1);
             }
             yield return null;
         }
     }
     public void ChangeBackgroundSpeed(int speed)
     {
-        targetBGSpeed = Mathf.Clamp(targetBGSpeed + speed, MinSpeed, MaxSpeed);
+        targetBGSpeed = Mathf.Clamp(targetBGSpeed + speed, MinBGSpeed, MaxBGSpeed);
     }
     public IEnumerator SpeedChanger()
     {
@@ -96,11 +95,11 @@ public class GameController : MonoBehaviour
         {
             if(targetBGSpeed > currentBGSpeed)
             {
-                currentBGSpeed = Mathf.Clamp(currentBGSpeed + BGSpeedPerStep, MinSpeed, MaxSpeed);
+                currentBGSpeed = Mathf.Clamp(currentBGSpeed + BGSpeedPerStep, MinBGSpeed, MaxBGSpeed);
             }
             else if (targetBGSpeed < currentBGSpeed)
             {
-                currentBGSpeed = Mathf.Clamp(currentBGSpeed - BGSpeedPerStep, MinSpeed, MaxSpeed);
+                currentBGSpeed = Mathf.Clamp(currentBGSpeed - BGSpeedPerStep, MinBGSpeed, MaxBGSpeed);
             }
             yield return new WaitForSeconds(0.25f);
         }

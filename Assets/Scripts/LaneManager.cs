@@ -61,7 +61,7 @@ public class LaneManager : MonoBehaviour
     private bool ObstacleAtPos(GameObject castFrom)
     {
         RaycastHit hit;
-        if (Physics.Raycast(castFrom.transform.position, transform.forward, out hit, enemyCar.detectionDistance))
+        if (Physics.Raycast(castFrom.transform.position, transform.forward, out hit, enemyCar.AIDetectionDistance))
         {
             if (hit.collider.CompareTag("Obstacle"))
             {
@@ -73,7 +73,7 @@ public class LaneManager : MonoBehaviour
     public bool ObstacleAheadOfEnemy()
     {
         RaycastHit hit;
-        if (Physics.Raycast(EnemySnaps[enemyCar.currentSnap].transform.position, transform.forward, out hit, enemyCar.detectionDistance))
+        if (Physics.Raycast(EnemySnaps[enemyCar.currentSnap].transform.position, transform.forward, out hit, enemyCar.AIDetectionDistance))
         {
             if (hit.collider.CompareTag("Obstacle"))
             {
