@@ -33,6 +33,7 @@ public class Timer : MonoBehaviour
             else
             {
                 SceneManager.LoadScene(2);
+                SoundManager.Instance.ChaseCompleted();
             }
         }
 

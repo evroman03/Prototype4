@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8499097306241483497
 Transform:
   m_ObjectHideFlags: 0
@@ -1093,6 +1093,7 @@ MonoBehaviour:
   ThingsToThrow:
   - {fileID: 2491192500025300348, guid: ec7569d5617e66a42855a42aca24c85c, type: 3}
   - {fileID: 8619130620706106687, guid: 43a66beeba59a004d9ec23b497576509, type: 3}
+  MonkeAnimator: {fileID: 5401301870091709756}
 --- !u!65 &8587077676080698416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1228,7 +1229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9076736249652838268
 Transform:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ public class ScoreManager : MonoBehaviour
             {
                 currentMultiplier = multiplierAmounts[currentMultIndex];
                 currentMultIndex++;
+                SoundManager.Instance.MultiplierRaised();
                 UpdateMultiplierText();
 
             }

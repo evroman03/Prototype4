@@ -58,7 +58,7 @@ public class AnyObject : MonoBehaviour
     {
         if (isBarrel) 
         {
-            var step = (GameController.Instance.currentBGSpeed/2) * Time.deltaTime;
+            var step = (GameController.Instance.currentBGSpeed/3) * Time.deltaTime;
             transform.position = Vector3.MoveTowards(rb.position, moveTowards.transform.position, step);
         } 
     }
@@ -70,6 +70,7 @@ public class AnyObject : MonoBehaviour
             if(ScoreChangeFactor != 0)
             {
                 ScoreManager.Instance.ChangeScore(ScoreChangeFactor);
+                SoundManager.Instance.CollectCoin();
             } 
             if(EnemyCarDistanceChange > 0 )
             {
@@ -91,7 +92,7 @@ public class AnyObject : MonoBehaviour
 
                 //For the multiplier
                 ScoreManager.Instance.DecreaseMultiplier(MultiplierLevelsToReduce);
-                //ScoreManager.Instance.currentMultIndex -= MultiplierLevelsToReduce;
+
             }
             DestroyThis();
         }

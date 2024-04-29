@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyCarController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class EnemyCarController : MonoBehaviour
     [Tooltip("How much time you lose when not catching the enemy. Recommend 0-0.5f. Formula is timeLost = time.dT * catchTimeLoss")] public float catchTimeLoss;
     public Transform barrelSpawn;
     public GameObject[] ThingsToThrow;
-
+    public Animator MonkeAnimator;
     public void GameReady()
     {
         LM = LaneManager.Instance;
@@ -33,7 +34,8 @@ public class EnemyCarController : MonoBehaviour
     {
         while (true)
         {
-            SpawnBarrel(ThingsToThrow[UnityEngine.Random.Range(0, ThingsToThrow.Length)]);
+            //MonkeAnimator.SetTrigger("ThrowBarrel");
+            SpawnBarrel();
             yield return new WaitForSeconds(UnityEngine.Random.Range(0.25f, 3f));
         }
     }
@@ -126,8 +128,9 @@ public class EnemyCarController : MonoBehaviour
                 currentCatchTime -= Time.deltaTime;
                 ScoreManager.Instance.UpdateCatchText(currentCatchTime);
                 if (currentCatchTime <= 0)
-                {
-                    print("YOU WIN");
+                {                  
+                    SceneManager.LoadScene(2);
+                    SoundManager.Instance.ChaseCompleted();
                 }
             }
             else
@@ -141,11 +144,9 @@ public class EnemyCarController : MonoBehaviour
             yield return null;
         }
     }
-    public void SpawnBarrel(GameObject barrel)
+    public void SpawnBarrel()
     {
-        if(barrel != null)
-        {
-            Instantiate(barrel, barrelSpawn.position, Quaternion.identity);
-        }
+        var barrel = ThingsToThrow[UnityEngine.Random.Range(0, ThingsToThrow.Length)];
+        Instantiate(barrel, barrelSpawn.position, Quaternion.identity);
     }
 }
