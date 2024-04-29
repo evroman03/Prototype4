@@ -98,10 +98,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4307f220e5b6e0a408ffe164fc35712f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreChangeFactor: -100
+  ScoreChangeFactor: -20
   EnemyCarDistanceChange: -2
+  BackgroundSpeedChange: 0
   isBarrel: 0
   enemyCar: {fileID: 0}
+  multLevelsToReduce: 0
 --- !u!65 &7477170640290372618
 BoxCollider:
   m_ObjectHideFlags: 0

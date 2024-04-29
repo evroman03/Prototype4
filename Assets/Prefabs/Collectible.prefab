@@ -141,8 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4307f220e5b6e0a408ffe164fc35712f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreChangeFactor: 50
+  ScoreChangeFactor: 10
   EnemyCarDistanceChange: 0
+  BackgroundSpeedChange: 0
+  isBarrel: 0
+  enemyCar: {fileID: 0}
+  multLevelsToReduce: 0
 --- !u!54 &2303908984029893601
 Rigidbody:
   m_ObjectHideFlags: 0
