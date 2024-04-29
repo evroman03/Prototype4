@@ -42,7 +42,7 @@ public class ScoreManager : MonoBehaviour
         while(true)
         {
             currentMultTime += Time.deltaTime;
-            if(currentMultIndex < totalTimeToNextMultLevel.Length && currentMultTime >= totalTimeToNextMultLevel[currentMultIndex])
+            if(currentMultIndex < totalTimeToNextMultLevel.Length-1 && currentMultTime >= totalTimeToNextMultLevel[currentMultIndex])
             {
                 currentMultiplier = multiplierAmounts[currentMultIndex];
                 currentMultIndex++;
